@@ -1,4 +1,4 @@
-import { handleSignOut } from './js/signout';
+import { handleSignOut } from '../../js/signout';
 
 function init() {
   if (!localStorage.getItem('accessToken')) {

@@ -1,5 +1,5 @@
-import isValidEmail from "./emailValidation";
-import isValidPassword, { isSamePassword } from "./passwordValidation";
+import isValidEmail from './emailValidation';
+import isValidPassword, { isSamePassword } from './passwordValidation';
 
 export default function validateSignUp(
   emailInput,
@@ -18,5 +18,5 @@ export default function validateSignUp(
     return;
   }
 
-  window.location.href = "../folder.html";
+  window.location.href = '../pages/folder/index.html';
 }

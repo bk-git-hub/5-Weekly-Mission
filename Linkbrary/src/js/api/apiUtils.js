@@ -12,7 +12,7 @@ export function makeRequestOptions(postData) {
 export function handleLoginResponse(responseData) {
   const accessToken = responseData.accessToken;
   saveAccessTokenToLocalStorage(accessToken);
-  window.location.href = '/folder.html';
+  window.location.href = '../../pages/folder/index.html';
   return Promise.resolve();
 }
 

@@ -6,7 +6,7 @@ import {
 
 function init() {
   if (localStorage.getItem('accessToken')) {
-    window.location.href = '/folder';
+    window.location.href = '../pages/folder/index.html';
     return;
   }
 
