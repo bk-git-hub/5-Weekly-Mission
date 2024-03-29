@@ -9,7 +9,7 @@
 
   .thumbnail-container {
     width: 340px;
-    height: 229px;
+    height: 206px;
     display: flex;
     justify-content: center;
     overflow: hidden;
@@ -49,7 +49,7 @@
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       font-size: 1em;
-      line-height: 1.25em;
+      line-height: 1.5em;
     }
     &:hover {
       .link-card-title {

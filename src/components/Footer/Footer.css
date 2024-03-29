@@ -8,6 +8,7 @@
   align-items: center;
   width: inherit;
   padding: 32px 104px 64px;
+
   .footer-bar {
     display: flex;
     justify-content: space-between;
@@ -48,7 +49,6 @@
     .footer-bar {
       display: grid;
       grid-template-columns: 181px 116px;
-      column-gap: auto;
       row-gap: 60px;
     }
     .copyright {
