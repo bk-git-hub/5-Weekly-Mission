@@ -16,14 +16,10 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Navigate to="/folder" replace />,
-  },
-  {
-    path: '/folder',
-    element: <FolderPage />,
-  },
-  {
-    path: '/shared',
-    element: <SharedPage />,
+    children: [
+      { path: '/shared', element: <SharedPage /> },
+      { path: '/folder', element: <FolderPage /> },
+    ],
   },
 ]);
 
