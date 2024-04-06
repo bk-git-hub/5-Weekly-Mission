@@ -1,0 +1,110 @@
+.folderToolBarContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 1060px;
+
+  .folderToolButtons {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+
+    .folderNameButtons {
+      display: flex;
+      flex-wrap: wrap;
+      width: 80%;
+      gap: 8px;
+    }
+  }
+
+  .folderNameDisplay {
+    font-size: 24px;
+    letter-spacing: -0.2px;
+    font-weight: 600;
+  }
+
+  .folderNameBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .utilButtons {
+      display: flex;
+      gap: 12px;
+    }
+  }
+
+  @media (max-width: 1124px) {
+    width: 706px;
+  }
+
+  @media (max-width: 767px) {
+    width: 325px;
+
+    .folderNameBar {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+  }
+}
+
+.folderNameButton {
+  background-color: #fff;
+  border: 1px solid #6d6afe;
+  padding: 8px 12px;
+  border-radius: 5px;
+  height: 36px;
+
+  &:hover {
+    background-color: #e7effb;
+  }
+}
+
+.focusedButton {
+  background-color: #6d6afe;
+  color: #fff;
+  &:hover {
+    background-color: #6d6afe;
+  }
+}
+
+.utilButton {
+  display: flex;
+  gap: 4px;
+  color: #9fa6b2;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.folderAddButton {
+  display: flex;
+  font-weight: 500;
+  gap: 4px;
+  color: #6d6afe;
+
+  .addIconWhite {
+    display: none;
+  }
+
+  @media (max-width: 767px) {
+    position: fixed;
+    bottom: 101px;
+    padding: 8px 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 20px;
+    background-color: #6d6afe;
+    color: #fff;
+    z-index: 1;
+
+    .addIcon {
+      display: none;
+    }
+
+    .addIconWhite {
+      display: block;
+    }
+  }
+}

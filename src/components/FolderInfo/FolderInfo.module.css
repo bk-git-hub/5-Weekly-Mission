@@ -1,0 +1,32 @@
+.folderInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px auto 60px;
+  gap: 20px;
+  width: fit-content;
+}
+
+.ownerProfile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.ownerProfileImage {
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+}
+
+.folderName {
+  font-size: 2.5em;
+  font-weight: 600;
+}
+
+@media (max-width: 1124px) {
+  .folderInfo {
+    margin: 10px auto 40px;
+  }
+}

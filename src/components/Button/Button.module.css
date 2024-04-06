@@ -1,0 +1,22 @@
+.btn {
+  background-image: linear-gradient(to right, #6d6afe, #6de3fe);
+  padding: 10px 16px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.125em;
+  font-weight: 600;
+  color: #f5f5f5;
+  text-decoration-line: none;
+  flex-shrink: 0;
+  &:hover,
+  &:focus {
+    cursor: pointer;
+  }
+
+  @media (max-width: 767px) {
+    padding: 10px 16px;
+    font-size: 14px;
+  }
+}
