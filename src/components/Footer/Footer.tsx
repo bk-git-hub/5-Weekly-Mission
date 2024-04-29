@@ -10,48 +10,48 @@ export default function Footer() {
       <div className={styles.footerBar}>
         <div className={styles.copyright}>©codeit - 2023</div>
         <div className={styles.policyBar}>
-          <a href="/" className={styles.footerLink}>
+          <a href='/' className={styles.footerLink}>
             Privacy Policy
           </a>
-          <a href="/" className={styles.footerLink}>
+          <a href='/' className={styles.footerLink}>
             FAQ
           </a>
         </div>
         <ul className={styles.infoLinkList}>
           <li>
             <a
-              href="https://www.facebook.com/"
-              target="_blank"
-              rel="noreferrer noopener"
+              href='https://www.facebook.com/'
+              target='_blank'
+              rel='noreferrer noopener'
             >
-              <img src={facebookLogo} alt="Facebook link logo" />
+              <img src={facebookLogo} alt='Facebook link logo' />
             </a>
           </li>
           <li>
             <a
-              href="https://twitter.com/"
-              target="_blank"
-              rel="noreferrer noopener"
+              href='https://twitter.com/'
+              target='_blank'
+              rel='noreferrer noopener'
             >
-              <img src={twitterLogo} alt="Twitter link logo" />
+              <img src={twitterLogo} alt='Twitter link logo' />
             </a>
           </li>
           <li>
             <a
-              href="https://www.youtube.com/"
-              target="_blank"
-              rel="noreferrer noopener"
+              href='https://www.youtube.com/'
+              target='_blank'
+              rel='noreferrer noopener'
             >
-              <img src={youtubeLogo} alt="Youtube link logo" />
+              <img src={youtubeLogo} alt='Youtube link logo' />
             </a>
           </li>
           <li>
             <a
-              href="https://www.instagram.com/"
-              target="_blank"
-              rel="noreferrer noopener"
+              href='https://www.instagram.com/'
+              target='_blank'
+              rel='noreferrer noopener'
             >
-              <img src={instagramLogo} alt="Instagram link logo" />
+              <img src={instagramLogo} alt='Instagram link logo' />
             </a>
           </li>
         </ul>
