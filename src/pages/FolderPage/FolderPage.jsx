@@ -95,15 +95,17 @@ export default function FolderPage() {
     let result;
     try {
       result = await getUserFolders();
+      setFolders([allFolder, ...result]);
     } catch (error) {}
-    setFolders([allFolder, ...result]);
+
+    let links = [];
     try {
       result = await getUserLinks(0);
+      for (const link of result) {
+        links.push(convertObjectKeysToCamelCase(link));
+      }
     } catch (error) {}
-    let links = [];
-    for (const link of result) {
-      links.push(convertObjectKeysToCamelCase(link));
-    }
+
     setLinks(links);
     setCurrentFolderId(0);
   }, []);
