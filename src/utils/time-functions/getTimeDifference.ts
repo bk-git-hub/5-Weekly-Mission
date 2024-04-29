@@ -12,9 +12,12 @@ const INTERVALS = [
   { label: 'minute', divisor: MILLISECONDS_IN_MINUTE },
 ];
 
-export default function getTimeDifference(createdDate, intervals = INTERVALS) {
-  const currentDate = new Date();
-  const timeDifference = currentDate - createdDate;
+export default function getTimeDifference(
+  createdDate: Date,
+  intervals = INTERVALS
+): string {
+  const currentDate: Date = new Date();
+  const timeDifference: number = currentDate.getTime() - createdDate.getTime();
 
   for (const interval of intervals) {
     const value = Math.floor(timeDifference / interval.divisor);
