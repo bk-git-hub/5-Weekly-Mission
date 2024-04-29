@@ -6,4 +6,6 @@
   align-items: center;
   width: 100%;
   font-family: 'Pretendard', sans-serif;
+  height: 100vh;
+  overflow-y: auto;
 }

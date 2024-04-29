@@ -24,6 +24,7 @@
   background-color: #fff;
   width: 100%;
   padding: 40px 200px 100px;
+  flex-grow: 1;
 }
 
 @media (max-width: 1124px) {
