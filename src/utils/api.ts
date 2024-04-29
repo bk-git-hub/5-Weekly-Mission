@@ -8,7 +8,7 @@ const LINK_FOLDER_SEARCH_OPTION = '?folderId=';
 const FOLDER_LOADING_ERROR_MESSAGE = '폴더 정보를 불러오는데 실패했습니다';
 const USER_LOADING_ERROR_MESSAGE = '이용자 정보를 불러오는데 실패했습니다';
 
-export async function getFolderInfo() {
+export async function getFolderInfo(): Promise<object> {
   const query = `${BASE_URL}${FOLDER_PATH}`;
   const response = await fetch(query);
 
@@ -17,34 +17,43 @@ export async function getFolderInfo() {
   }
 
   const result = await response.json();
+
   return result.folder;
 }
 
-export async function getUserInfo() {
+export async function getUserInfo(): Promise<object> {
   const query = `${USER_BASE_URL}`;
   const response = await fetch(query);
+
   if (!response.ok) {
     throw new Error(USER_LOADING_ERROR_MESSAGE);
   }
+
   const result = await response.json();
+
   return result.data[0];
 }
 
-export async function getUserFolders() {
+export async function getUserFolders(): Promise<object[]> {
   const response = await fetch(`${USER_BASE_URL}${USER_FOLDERS_PATH}`);
+
   if (!response.ok) {
     throw new Error();
   }
+
   const result = await response.json();
+
   return result.data;
 }
 
-export async function getUserLinks(id) {
+export async function getUserLinks(id: number): Promise<object[]> {
   let linkPath = `${LINK_PATH}`;
+
   if (id && id > 0) {
     linkPath = `${LINK_PATH}${LINK_FOLDER_SEARCH_OPTION}${id}`;
   }
   const response = await fetch(`${USER_BASE_URL}${linkPath}`);
+
   if (!response.ok) {
     throw new Error();
   }
