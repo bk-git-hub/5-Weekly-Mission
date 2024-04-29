@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { useState, useEffect, useRef } from 'react';
 import styles from './LinkCard.module.css';
 import noImagePlaceholder from '../../assets/images/placeholder_image.png';
@@ -8,27 +7,36 @@ import kebab from '../../assets/images/kebab.svg';
 import getTimeDifference from '../../utils/time-functions/getTimeDifference';
 import formatDate from '../../utils/time-functions/formatDate';
 
+interface LinkCardProp {
+  linkCardInfo: { [key: string]: any };
+  onAddToFolder: (url: string) => void;
+  onLinkDelete: (url: string) => void;
+}
+
 export default function LinkCard({
   linkCardInfo,
   onAddToFolder,
   onLinkDelete,
-}) {
+}: LinkCardProp) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
-  const dropdownRef = useRef(null);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
 
-  const handleClickOutside = (event) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node)
+    ) {
       setIsDropdownOpen(false);
     }
   };
 
-  const handleLinkDelete = (e) => {
+  const handleLinkDelete = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     onLinkDelete(linkCardInfo.url);
   };
 
-  const handleAddToFolder = (e) => {
+  const handleAddToFolder = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     onAddToFolder(linkCardInfo.url);
   };
@@ -54,12 +62,12 @@ export default function LinkCard({
   const timestamp = getTimeDifference(createdDate);
   const altMessage = linkCardInfo.title;
 
-  const handleKebabClick = (event) => {
+  const handleKebabClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setIsDropdownOpen(!isDropdownOpen);
     event.preventDefault();
   };
 
-  const handleStarClick = (event) => {
+  const handleStarClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     setIsFavorite(!isFavorite);
   };
@@ -116,13 +124,3 @@ export default function LinkCard({
     </a>
   );
 }
-
-LinkCard.propTypes = {
-  linkCardInfo: PropTypes.shape({
-    imageSource: PropTypes.string,
-    description: PropTypes.string,
-    url: PropTypes.string,
-    createdAt: PropTypes.string,
-    title: PropTypes.string,
-  }),
-};
