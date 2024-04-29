@@ -1,4 +1,10 @@
-export const kakaoShare = (route) => {
+declare global {
+  interface Window {
+    Kakao: any;
+  }
+}
+
+export function kakaoShare(route: string): void {
   if (window.Kakao) {
     const kakao = window.Kakao;
     if (!kakao.isInitialized()) {
@@ -30,4 +36,4 @@ export const kakaoShare = (route) => {
       installTalk: true,
     });
   }
-};
+}
