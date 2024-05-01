@@ -3,11 +3,7 @@ import addIconWhite from '../../assets/images/add_icon_white.svg';
 import FolderToolBarButton from './FolderToolBarButton';
 import styles from './FolderToolBar.module.css';
 import UtilButton from './UtilButton';
-
-import shareIcon from '../../assets/images/share_icon.svg';
-import penIcon from '../../assets/images/pen_icon.svg';
-import deleteIcon from '../../assets/images/delete_icon.svg';
-
+import { UTIL_BUTTONS_PROPS } from './constants';
 interface FolderObject extends Object {
   id: number;
   name: string;
@@ -36,31 +32,9 @@ export default function FolderToolBar({
     (folder) => folder.id === currentFolderId
   );
   const currentFolderName = currentFolder?.name;
-
-  const UTIL_BUTTONS_PROPS = [
-    {
-      imgSrc: shareIcon,
-      btnText: '공유',
-      alt: '공유 아이콘',
-      id: 1,
-      onClick: onShare,
-    },
-
-    {
-      imgSrc: penIcon,
-      btnText: '이름 변경',
-      alt: '이름 변경 아이콘',
-      id: 2,
-      onClick: onFolderNameChangeClick,
-    },
-    {
-      imgSrc: deleteIcon,
-      btnText: '삭제',
-      alt: '삭제 아이콘',
-      id: 3,
-      onClick: onFolderDeleteClick,
-    },
-  ];
+  UTIL_BUTTONS_PROPS.share.onClick = onShare;
+  UTIL_BUTTONS_PROPS.changeName.onClick = onFolderNameChangeClick;
+  UTIL_BUTTONS_PROPS.delete.onClick = onFolderDeleteClick;
 
   return (
     <div className={styles.folderToolBarContainer}>
@@ -96,7 +70,7 @@ export default function FolderToolBar({
       <div className={styles.folderNameBar}>
         <span className={styles.folderNameDisplay}>{currentFolderName}</span>
         <ul className={styles.utilButtons}>
-          {UTIL_BUTTONS_PROPS.map((btn) => (
+          {Object.entries(UTIL_BUTTONS_PROPS).map(([key, btn]) => (
             <li key={btn.id}>
               {currentFolderId !== 0 && (
                 <UtilButton
