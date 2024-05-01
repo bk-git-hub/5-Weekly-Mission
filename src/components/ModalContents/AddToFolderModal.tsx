@@ -1,16 +1,20 @@
 import styles from './ModalContents.module.css';
 import Button from '../Button/Button';
+import { FolderObject } from '../../utils/interfaces';
 
-// interface AddToFolderModalProps {
-//   folders:
-// }
+interface AddToFolderModalProps {
+  folders: FolderObject[];
+  headerText: string;
+  subHeaderText: string;
+  buttonText: string;
+}
 
 export default function AddToFolderModal({
   folders,
   headerText,
   subHeaderText,
   buttonText,
-}) {
+}: AddToFolderModalProps) {
   const curFolders = folders.slice(1);
   return (
     <div className={styles.modalContentWrapper}>
