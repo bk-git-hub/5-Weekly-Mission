@@ -3,6 +3,25 @@ import LinkCard from '../LinkCard/LinkCard';
 import SearchBar from '../SearchBar/SearchBar';
 import styles from './LinkCardList.module.css';
 
+interface FolderObject extends Object {
+  id: number;
+  name: string;
+}
+
+interface LinkCardListProp {
+  items: { [key: string]: any }[];
+  searchOnSubmit: () => void;
+  folders?: FolderObject[];
+  folderNameOnClick: () => void;
+  currentFolderId: number;
+  onFolderAddClick: () => void;
+  onFolderNameChangeClick: () => void;
+  onFolderDeleteClick: () => void;
+  onLinkDelete: () => void;
+  onAddtoFolder: () => void;
+  onShare: () => void;
+}
+
 const LinkCardList = ({
   items,
   searchOnSubmit,
@@ -15,7 +34,7 @@ const LinkCardList = ({
   onLinkDelete,
   onAddtoFolder,
   onShare,
-}) => {
+}: LinkCardListProp) => {
   return (
     <div className={styles.linkCardListContainer}>
       <div className={styles.contentWrapper}>
