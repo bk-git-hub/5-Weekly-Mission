@@ -6,15 +6,44 @@ import { facebookShare } from '../../utils/shareFunctions/facebooShare';
 import { kakaoShare } from '../../utils/shareFunctions/kakaoshare';
 import { useState } from 'react';
 
-export default function ShareModal({ headerText, subHeaderText, folderNum }) {
+interface ShareModalProps {
+  headerText: string;
+  subHeaderText: string;
+  folderNum: number;
+}
+
+interface ShareButtonProps {
+  text: string;
+  icon: string;
+  onClick: () => void;
+  id: number;
+}
+
+function noop() {}
+
+const SHARE_BUTTONS_INFO: { [key: string]: ShareButtonProps } = {
+  kakao: { text: '카카오톡', icon: kakao, onClick: noop, id: 0 },
+  facebook: {
+    text: '페이스북',
+    icon: facebook,
+    onClick: noop,
+    id: 1,
+  },
+  copyLink: { text: '링크 복사', icon: share, onClick: noop, id: 2 },
+};
+
+export default function ShareModal({
+  headerText,
+  subHeaderText,
+  folderNum,
+}: ShareModalProps) {
   const [showToast, setShowToast] = useState(false);
 
   const SHARE_URL = `https://bk-part2.netlify.app/shared/${folderNum}`;
 
   const handleCopyLinkClipBoard = async () => {
-    const copiedLink = SHARE_URL;
     try {
-      await navigator.clipboard.writeText(copiedLink);
+      await navigator.clipboard.writeText(SHARE_URL);
       setShowToast(true);
       setTimeout(() => setShowToast(false), 3000);
     } catch (err) {
@@ -22,15 +51,9 @@ export default function ShareModal({ headerText, subHeaderText, folderNum }) {
     }
   };
 
-  const SHARE_BUTTONS_INFO = [
-    { text: '카카오톡', icon: kakao, onClick: () => kakaoShare(SHARE_URL) },
-    {
-      text: '페이스북',
-      icon: facebook,
-      onClick: () => facebookShare(SHARE_URL),
-    },
-    { text: '링크 복사', icon: share, onClick: handleCopyLinkClipBoard },
-  ];
+  SHARE_BUTTONS_INFO.kakao.onClick = () => kakaoShare(SHARE_URL);
+  SHARE_BUTTONS_INFO.facebook.onClick = () => facebookShare(SHARE_URL);
+  SHARE_BUTTONS_INFO.copyLink.onClick = handleCopyLinkClipBoard;
 
   return (
     <div className={styles.modalContentWrapper}>
@@ -39,8 +62,8 @@ export default function ShareModal({ headerText, subHeaderText, folderNum }) {
         <span className={styles.modalSubHeader}>{subHeaderText}</span>
       </div>
       <ul className={styles.shareButtonBar}>
-        {SHARE_BUTTONS_INFO.map((item) => (
-          <li key={item.index}>
+        {Object.entries(SHARE_BUTTONS_INFO).map(([key, item]) => (
+          <li key={item.id}>
             <div className={styles.shareButtonWrapper}>
               <button className={styles.shareButton} onClick={item.onClick}>
                 <img src={item.icon} alt={item.text} />
