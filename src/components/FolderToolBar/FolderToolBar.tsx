@@ -4,11 +4,7 @@ import FolderToolBarButton from './FolderToolBarButton';
 import styles from './FolderToolBar.module.css';
 import UtilButton from './UtilButton';
 import { UTIL_BUTTONS_PROPS } from './constants';
-interface FolderObject extends Object {
-  id: number;
-  name: string;
-}
-
+import { FolderObject } from '../../utils/interfaces';
 interface FolderToolBarProps {
   folders?: FolderObject[];
   currentFolderId?: number;

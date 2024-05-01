@@ -1,6 +1,10 @@
 import styles from './ModalContents.module.css';
 import Button from '../Button/Button';
 
+// interface AddToFolderModalProps {
+//   folders:
+// }
+
 export default function AddToFolderModal({
   folders,
   headerText,

@@ -2,12 +2,7 @@ import FolderToolBar from '../FolderToolBar/FolderToolBar';
 import LinkCard from '../LinkCard/LinkCard';
 import SearchBar from '../SearchBar/SearchBar';
 import styles from './LinkCardList.module.css';
-
-interface FolderObject extends Object {
-  id: number;
-  name: string;
-}
-
+import { FolderObject } from '../../utils/interfaces';
 interface LinkCardListProp {
   items: { [key: string]: any }[];
   searchOnSubmit: () => void;
