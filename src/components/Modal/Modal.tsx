@@ -1,6 +1,11 @@
 import styles from './Modal.module.css';
 
-export default function Modal({ children, onClose }) {
+interface ModalProps {
+  children: React.ReactNode;
+  onClose: () => void;
+}
+
+export default function Modal({ children, onClose }: ModalProps) {
   return (
     <div className={styles.modalContainer}>
       <div className={styles.modalWrapper}>
