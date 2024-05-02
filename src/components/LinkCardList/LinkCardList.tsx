@@ -3,7 +3,7 @@ import LinkCard from '../LinkCard/LinkCard';
 import SearchBar from '../SearchBar/SearchBar';
 import styles from './LinkCardList.module.css';
 import { FolderObject } from '../../utils/interfaces';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 interface LinkCardListProp {
   items: { [key: string]: any }[];
