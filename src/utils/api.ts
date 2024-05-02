@@ -1,3 +1,5 @@
+import { FolderObject } from './interfaces';
+
 const BASE_URL = 'https://bootcamp-api.codeit.kr/api/sample';
 const USER_BASE_URL = 'https://bootcamp-api.codeit.kr/api/users/1';
 
@@ -34,7 +36,7 @@ export async function getUserInfo(): Promise<object> {
   return result.data[0];
 }
 
-export async function getUserFolders(): Promise<object[]> {
+export async function getUserFolders(): Promise<FolderObject[]> {
   const response = await fetch(`${USER_BASE_URL}${USER_FOLDERS_PATH}`);
 
   if (!response.ok) {
