@@ -3,7 +3,7 @@ import Button from '../Button/Button';
 import { useState } from 'react';
 
 interface FolderInputModalProps {
-  initialValue: string;
+  initialValue?: string;
   headerText: string;
   buttonText: string;
 }
