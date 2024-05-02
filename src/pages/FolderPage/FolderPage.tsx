@@ -96,6 +96,25 @@ export default function FolderPage() {
     );
   };
 
+  function filterLinksByKeyword(keyword: string) {
+    return links.filter(
+      (link) =>
+        link.url?.includes(keyword) ||
+        link.description?.includes(keyword) ||
+        link.title?.includes(keyword)
+    );
+  }
+
+  const handleSearchSubmit = (keyword: string) => {
+    if (keyword === '') {
+      handleFolderNameButtonClick(currentFolderId);
+      return;
+    }
+
+    const searchedLinks = filterLinksByKeyword(keyword);
+    setLinks(searchedLinks);
+  };
+
   const handleLoad = useCallback(async () => {
     let result;
     try {
@@ -158,6 +177,7 @@ export default function FolderPage() {
         onLinkDelete={handleLinkDeleteClick}
         onShare={handleShareClick}
         onAddtoFolder={handleAddToFolder}
+        searchOnSubmit={handleSearchSubmit}
       />
     </>
   );

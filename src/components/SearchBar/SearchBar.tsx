@@ -22,8 +22,13 @@ const SearchBar = ({ onSubmit }: SearchBarProps) => {
     setText('');
   };
 
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    onSubmit(text);
+  };
+
   return (
-    <form onSubmit={() => onSubmit(text)} className={styles.searchBar}>
+    <form onSubmit={handleSubmit} className={styles.searchBar}>
       <button className={styles.searchButton} type='submit'>
         <img src={searchIcon} alt={SEARCH_INPUT_ICON_ALT} />
       </button>
