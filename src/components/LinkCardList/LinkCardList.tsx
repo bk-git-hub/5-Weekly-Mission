@@ -3,17 +3,18 @@ import LinkCard from '../LinkCard/LinkCard';
 import SearchBar from '../SearchBar/SearchBar';
 import styles from './LinkCardList.module.css';
 import { FolderObject } from '../../utils/interfaces';
+
 interface LinkCardListProp {
   items: { [key: string]: any }[];
   searchOnSubmit: () => void;
   folders?: FolderObject[];
-  folderNameOnClick: () => void;
+  folderNameOnClick: (id: number) => void;
   currentFolderId: number;
   onFolderAddClick: () => void;
   onFolderNameChangeClick: () => void;
   onFolderDeleteClick: () => void;
-  onLinkDelete: () => void;
-  onAddtoFolder: () => void;
+  onLinkDelete: (link: string) => void;
+  onAddtoFolder: (link: string) => void;
   onShare: () => void;
 }
 

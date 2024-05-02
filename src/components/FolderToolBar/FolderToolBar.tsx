@@ -8,7 +8,7 @@ import { FolderObject } from '../../utils/interfaces';
 interface FolderToolBarProps {
   folders?: FolderObject[];
   currentFolderId?: number;
-  folderNameOnClick: () => void;
+  folderNameOnClick: (id: number) => void;
   onFolderNameChangeClick: () => void;
   onFolderAddClick: () => void;
   onFolderDeleteClick: () => void;
