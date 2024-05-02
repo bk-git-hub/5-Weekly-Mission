@@ -8,7 +8,7 @@ const SEARCH_INPUT_PLACEHOLDER = '링크를 검색하세요';
 const SEARCH_INPUT_ICON_ALT = 'Search Icon';
 
 interface SearchBarProps {
-  onSubmit: () => void;
+  onSubmit: (keyword: string) => void;
 }
 
 const SearchBar = ({ onSubmit }: SearchBarProps) => {
@@ -23,7 +23,7 @@ const SearchBar = ({ onSubmit }: SearchBarProps) => {
   };
 
   return (
-    <form onSubmit={onSubmit} className={styles.searchBar}>
+    <form onSubmit={() => onSubmit(text)} className={styles.searchBar}>
       <button className={styles.searchButton} type='submit'>
         <img src={searchIcon} alt={SEARCH_INPUT_ICON_ALT} />
       </button>

@@ -6,7 +6,7 @@ import { FolderObject } from '../../utils/interfaces';
 
 interface LinkCardListProp {
   items: { [key: string]: any }[];
-  searchOnSubmit: () => void;
+  searchOnSubmit: (keyword: string) => void;
   folders?: FolderObject[];
   folderNameOnClick: (id: number) => void;
   currentFolderId: number;
