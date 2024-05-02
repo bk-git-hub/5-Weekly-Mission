@@ -3,10 +3,10 @@ import LinkCard from '../LinkCard/LinkCard';
 import SearchBar from '../SearchBar/SearchBar';
 import styles from './LinkCardList.module.css';
 import { FolderObject } from '../../utils/interfaces';
+import { useEffect, useState } from 'react';
 
 interface LinkCardListProp {
   items: { [key: string]: any }[];
-  searchOnSubmit: (keyword: string) => void;
   folders?: FolderObject[];
   folderNameOnClick: (id: number) => void;
   currentFolderId: number;
@@ -20,7 +20,6 @@ interface LinkCardListProp {
 
 const LinkCardList = ({
   items,
-  searchOnSubmit,
   folders,
   folderNameOnClick,
   currentFolderId,
@@ -31,10 +30,28 @@ const LinkCardList = ({
   onAddtoFolder,
   onShare,
 }: LinkCardListProp) => {
+  const [searchText, setSearchText] = useState<string>('');
+
+  const handleSearchInput = (text: string) => {
+    setSearchText(text);
+  };
+
+  function filterLinksByKeyword(keyword: string) {
+    if (searchText === '') return items;
+    return items.filter(
+      (item) =>
+        item.url?.includes(keyword) ||
+        item.description?.includes(keyword) ||
+        item.title?.includes(keyword)
+    );
+  }
+
+  const curItems = filterLinksByKeyword(searchText);
+
   return (
     <div className={styles.linkCardListContainer}>
       <div className={styles.contentWrapper}>
-        <SearchBar onSubmit={searchOnSubmit} />
+        <SearchBar onChange={handleSearchInput} searchText={searchText} />
         {folders && (
           <FolderToolBar
             folders={folders}
@@ -47,9 +64,9 @@ const LinkCardList = ({
           />
         )}
 
-        {items.length > 0 ? (
+        {curItems.length > 0 ? (
           <ul className={styles.linkCardList}>
-            {items.map((item) => (
+            {curItems.map((item) => (
               <li key={item.id}>
                 <LinkCard
                   linkCardInfo={item}

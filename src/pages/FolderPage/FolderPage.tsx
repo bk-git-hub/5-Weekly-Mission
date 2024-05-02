@@ -13,6 +13,7 @@ import { FolderObject } from '../../utils/interfaces';
 const allFolder = {
   id: 0,
   name: '전체',
+  user_id: 1,
 };
 
 export default function FolderPage() {
@@ -96,25 +97,6 @@ export default function FolderPage() {
     );
   };
 
-  function filterLinksByKeyword(keyword: string) {
-    return links.filter(
-      (link) =>
-        link.url?.includes(keyword) ||
-        link.description?.includes(keyword) ||
-        link.title?.includes(keyword)
-    );
-  }
-
-  const handleSearchSubmit = (keyword: string) => {
-    if (keyword === '') {
-      handleFolderNameButtonClick(currentFolderId);
-      return;
-    }
-
-    const searchedLinks = filterLinksByKeyword(keyword);
-    setLinks(searchedLinks);
-  };
-
   const handleLoad = useCallback(async () => {
     let result;
     try {
@@ -133,7 +115,6 @@ export default function FolderPage() {
     } catch (error) {
       return;
     }
-
     setLinks(links);
     setCurrentFolderId(0);
   }, []);
@@ -177,7 +158,6 @@ export default function FolderPage() {
         onLinkDelete={handleLinkDeleteClick}
         onShare={handleShareClick}
         onAddtoFolder={handleAddToFolder}
-        searchOnSubmit={handleSearchSubmit}
       />
     </>
   );

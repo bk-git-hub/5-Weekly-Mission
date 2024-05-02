@@ -8,23 +8,22 @@ const SEARCH_INPUT_PLACEHOLDER = '링크를 검색하세요';
 const SEARCH_INPUT_ICON_ALT = 'Search Icon';
 
 interface SearchBarProps {
-  onSubmit: (keyword: string) => void;
+  onChange: (keyword: string) => void;
+  searchText: string;
 }
 
-const SearchBar = ({ onSubmit }: SearchBarProps) => {
-  const [text, setText] = useState<string>('');
+const SearchBar = ({ onChange, searchText }: SearchBarProps) => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    setText(e.target.value);
+    onChange(e.target.value);
   };
 
   const handleSearchDelete = () => {
-    setText('');
+    onChange('');
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    onSubmit(text);
   };
 
   return (
@@ -38,10 +37,10 @@ const SearchBar = ({ onSubmit }: SearchBarProps) => {
         id={SEARCH_INPUT_ID}
         placeholder={SEARCH_INPUT_PLACEHOLDER}
         className={styles.searchInput}
-        value={text}
+        value={searchText}
         onChange={handleChange}
       />
-      {text !== '' && (
+      {searchText !== '' && (
         <button onClick={handleSearchDelete} className={styles.searchButton}>
           <img src={deleteTextIcon} alt='검색어 삭제' />
         </button>
