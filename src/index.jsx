@@ -11,6 +11,7 @@ import SharedPage from './pages/SharedPage/SharedPage';
 import FolderPage from './pages/FolderPage/FolderPage';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
+import App from './App';
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/folder',
-    element: <FolderPage />,
+    element: <App />,
   },
   {
     path: '/shared',
