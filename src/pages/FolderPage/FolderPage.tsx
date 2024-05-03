@@ -1,162 +1,67 @@
-import LinkCardList from '../../components/LinkCardList/LinkCardList';
-import { getUserFolders, getUserLinks } from '../../utils/api';
-import { useEffect, useState, useCallback } from 'react';
-import './FolderPage.css';
-import { convertObjectKeysToCamelCase } from '../../utils/convertObjectKeysToCamelCase';
-import Modal from '../../components/Modal/Modal';
-import DeleteModal from '../../components/ModalContents/DeleteModal';
-import FolderInputModal from '../../components/ModalContents/FolderInputModal';
-import ShareModal from '../../components/ModalContents/ShareModal';
-import AddToFolderModal from '../../components/ModalContents/AddToFolderModal';
-import { FolderObject } from '../../utils/interfaces';
-const allFolder = {
-  id: 0,
-  name: '전체',
-  user_id: 1,
-};
+import { useEffect, useRef, useState } from 'react';
+import FolderPage from '../../components/FolderPageContent/FolderPageContent';
+import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
+import AddLinkBar from '../../components/AddLinkBar/AddLinkBar';
 
-export default function FolderPage() {
-  const [currentFolderId, setCurrentFolderId] = useState(0);
-  const [folders, setFolders] = useState<FolderObject[]>([allFolder]);
-  const [links, setLinks] = useState<{ [key: string]: any }[]>([]);
-  const [showModal, setShowModal] = useState(false);
-  const [modalContent, setModalContent] = useState<React.ReactElement | null>(
-    null
-  );
+export default function App() {
+  const addLinkBarRef = useRef<HTMLDivElement>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
 
-  const handleFolderAddClick = () => {
-    setShowModal(true);
-    setModalContent(
-      <FolderInputModal headerText={'폴더 추가'} buttonText={'추가하기'} />
-    );
-  };
-
-  const handleFolderNameChangeClick = () => {
-    const currentFolder = folders.find(
-      (folder) => folder.id === currentFolderId
-    );
-    if (!currentFolder) return;
-    setShowModal(true);
-    setModalContent(
-      <FolderInputModal
-        initialValue={currentFolder.name}
-        headerText={'폴더 이름 변경'}
-        buttonText={'변경하기'}
-      />
-    );
-  };
-
-  const handleFolderDeleteClick = () => {
-    const currentFolder = folders.find(
-      (folder) => folder.id === currentFolderId
-    );
-    if (!currentFolder) return;
-    setShowModal(true);
-    setModalContent(
-      <DeleteModal
-        headerText={'폴더 삭제'}
-        subHeaderText={currentFolder.name}
-      />
-    );
-  };
-
-  const handleLinkDeleteClick = (link: string) => {
-    setShowModal(true);
-
-    setModalContent(
-      <DeleteModal headerText={'링크 삭제'} subHeaderText={link} />
-    );
-  };
-
-  const handleAddToFolder = (link: string) => {
-    setShowModal(true);
-
-    setModalContent(
-      <AddToFolderModal
-        folders={folders}
-        headerText={'폴더에 추가'}
-        subHeaderText={link}
-        buttonText={'추가하기'}
-      />
-    );
-  };
-
-  const handleShareClick = () => {
-    const currentFolder = folders.find(
-      (folder) => folder.id === currentFolderId
-    );
-    if (!currentFolder) return;
-    setShowModal(true);
-    setModalContent(
-      <ShareModal
-        headerText={'폴더 공유'}
-        subHeaderText={currentFolder.name}
-        folderNum={currentFolder.id}
-      />
-    );
-  };
-
-  const handleLoad = useCallback(async () => {
-    let result;
-    try {
-      result = await getUserFolders();
-      setFolders([allFolder, ...result]);
-    } catch (error) {
-      return;
-    }
-
-    let links = [];
-    try {
-      result = await getUserLinks(0);
-      for (const link of result) {
-        links.push(convertObjectKeysToCamelCase(link));
-      }
-    } catch (error) {
-      return;
-    }
-    setLinks(links);
-    setCurrentFolderId(0);
-  }, []);
-
-  const handleFolderNameButtonClick = async (id: number) => {
-    setCurrentFolderId(id);
-    let result;
-    try {
-      result = await getUserLinks(id);
-    } catch (error) {
-      return;
-    }
-    let links = [];
-    for (const link of result) {
-      links.push(convertObjectKeysToCamelCase(link));
-    }
-    setLinks(links);
-  };
+  const [showingBar, setShowingBar] = useState(true);
+  const [showingFooter, setShowingFooter] = useState(false);
 
   useEffect(() => {
-    handleLoad();
-  }, [handleLoad]);
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const addLinkBarEntry = entries.find(
+          (entry) => entry.target === addLinkBarRef.current
+        );
+        const footerEntry = entries.find(
+          (entry) => entry.target === footerRef.current
+        );
+
+        if (footerEntry) {
+          if (footerEntry.isIntersecting) {
+            setShowingFooter(true);
+          }
+          if (!footerEntry.isIntersecting) {
+            setShowingFooter(false);
+          }
+        }
+
+        if (addLinkBarEntry) {
+          if (addLinkBarEntry.isIntersecting) {
+            setShowingBar(true);
+          }
+          if (!addLinkBarEntry.isIntersecting) {
+            setShowingBar(false);
+          }
+        }
+      },
+      { threshold: 0 }
+    );
+
+    if (addLinkBarRef.current) {
+      observer.observe(addLinkBarRef.current);
+    }
+
+    if (footerRef.current) {
+      observer.observe(footerRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
 
   return (
     <>
-      {showModal && (
-        <>
-          <Modal onClose={() => setShowModal(false)}>{modalContent}</Modal>
-          <div className={'overlay'} onClick={() => setShowModal(false)}></div>
-        </>
-      )}
-      <LinkCardList
-        folders={folders}
-        items={links}
-        folderNameOnClick={handleFolderNameButtonClick}
-        currentFolderId={currentFolderId}
-        onFolderAddClick={handleFolderAddClick}
-        onFolderNameChangeClick={handleFolderNameChangeClick}
-        onFolderDeleteClick={handleFolderDeleteClick}
-        onLinkDelete={handleLinkDeleteClick}
-        onShare={handleShareClick}
-        onAddtoFolder={handleAddToFolder}
-      />
+      <Header />
+      <AddLinkBar ref={addLinkBarRef} isFixed={false} />
+      <FolderPage />
+      {!showingBar && !showingFooter && <AddLinkBar isFixed={true} />}
+      <Footer ref={footerRef} />
     </>
   );
 }
