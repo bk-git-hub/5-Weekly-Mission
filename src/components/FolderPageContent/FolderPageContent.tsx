@@ -1,14 +1,14 @@
-import LinkCardList from '../LinkCardList/LinkCardList';
-import { getUserFolders, getUserLinks } from '../../utils/api';
+import LinkCardList from '@components/LinkCardList/LinkCardList';
+import { getUserFolders, getUserLinks } from '@utils/api';
 import { useEffect, useState, useCallback } from 'react';
 import './FolderPageContent.css';
-import { convertObjectKeysToCamelCase } from '../../utils/convertObjectKeysToCamelCase';
-import Modal from '../Modal/Modal';
-import DeleteModal from '../ModalContents/DeleteModal';
-import FolderInputModal from '../ModalContents/FolderInputModal';
-import ShareModal from '../ModalContents/ShareModal';
-import AddToFolderModal from '../ModalContents/AddToFolderModal';
-import { FolderObject } from '../../utils/interfaces';
+import { convertObjectKeysToCamelCase } from '@utils/convertObjectKeysToCamelCase';
+import Modal from '@components/Modal/Modal';
+import DeleteModal from '@components/ModalContents/DeleteModal';
+import FolderInputModal from '@components/ModalContents/FolderInputModal';
+import ShareModal from '@components/ModalContents/ShareModal';
+import AddToFolderModal from '@components/ModalContents/AddToFolderModal';
+import { FolderObject } from '@utils/interfaces';
 const allFolder = {
   id: 0,
   name: '전체',

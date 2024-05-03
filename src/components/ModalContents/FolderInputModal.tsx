@@ -1,5 +1,5 @@
 import styles from './ModalContents.module.css';
-import Button from '../Button/Button';
+import Button from '@components/Button/Button';
 import { useState } from 'react';
 
 interface FolderInputModalProps {

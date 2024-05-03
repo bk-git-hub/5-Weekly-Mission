@@ -1,6 +1,6 @@
 import styles from './ModalContents.module.css';
-import Button from '../Button/Button';
-import { FolderObject } from '../../utils/interfaces';
+import Button from '@components/Button/Button';
+import { FolderObject } from '@utils/interfaces';
 
 interface AddToFolderModalProps {
   folders: FolderObject[];

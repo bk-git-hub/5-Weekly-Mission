@@ -1,6 +1,6 @@
-import shareIcon from '../../assets/images/share_icon.svg';
-import penIcon from '../../assets/images/pen_icon.svg';
-import deleteIcon from '../../assets/images/delete_icon.svg';
+import shareIcon from '@assets/images/share_icon.svg';
+import penIcon from '@assets/images/pen_icon.svg';
+import deleteIcon from '@assets/images/delete_icon.svg';
 
 interface UtilButtonProp {
   imgSrc: string;

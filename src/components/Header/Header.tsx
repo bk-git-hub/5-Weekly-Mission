@@ -1,10 +1,10 @@
 import './Header.css';
-import logo from '../../assets/images/logo.svg';
+import logo from '@assets/images/logo.svg';
 import { useCallback, useEffect, useState } from 'react';
-import { getUserInfo } from '../../utils/api';
-import Account from '../Account/Account';
-import Button from '../Button/Button';
-import { convertObjectKeysToCamelCase } from '../../utils/convertObjectKeysToCamelCase';
+import { getUserInfo } from '@utils/api';
+import Account from '@components/Account/Account';
+import Button from '@components/Button/Button';
+import { convertObjectKeysToCamelCase } from '@utils/convertObjectKeysToCamelCase';
 
 const styleMainHeaderClassName = 'main-header';
 const styleLogoImgClassName = 'logo-img';

@@ -1,8 +1,8 @@
-import FolderToolBar from '../FolderToolBar/FolderToolBar';
-import LinkCard from '../LinkCard/LinkCard';
-import SearchBar from '../SearchBar/SearchBar';
+import FolderToolBar from '@components/FolderToolBar/FolderToolBar';
+import LinkCard from '@components/LinkCard/LinkCard';
+import SearchBar from '@components/SearchBar/SearchBar';
 import styles from './LinkCardList.module.css';
-import { FolderObject } from '../../utils/interfaces';
+import { FolderObject } from '@utils/interfaces';
 import { useState } from 'react';
 
 interface LinkCardListProp {

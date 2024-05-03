@@ -113,8 +113,8 @@
     color: #6d6afe;
   }
   &:focus {
-    background: #f0f6ff url('../../assets/images/check.svg') no-repeat top 8px
-      right 8px;
+    background: #f0f6ff url('@assets/images/check.svg') no-repeat top 8px right
+      8px;
     color: #6d6afe;
   }
 }

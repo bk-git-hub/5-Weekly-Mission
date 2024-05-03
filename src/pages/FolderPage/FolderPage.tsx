@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import FolderPage from '../../components/FolderPageContent/FolderPageContent';
-import Header from '../../components/Header/Header';
-import Footer from '../../components/Footer/Footer';
-import AddLinkBar from '../../components/AddLinkBar/AddLinkBar';
+import FolderPage from '@components/FolderPageContent/FolderPageContent';
+import Header from '@components/Header/Header';
+import Footer from '@components/Footer/Footer';
+import AddLinkBar from '@components/AddLinkBar/AddLinkBar';
 
 export default function App() {
   const addLinkBarRef = useRef<HTMLDivElement>(null);

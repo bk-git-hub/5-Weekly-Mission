@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import Button from '@components/Button/Button';
-import linkIcon from '../../assets/images/link.svg';
+import linkIcon from '@assets/images/link.svg';
 import styles from './AddLinkBar.module.css';
 
 interface AddLinkBarProps {

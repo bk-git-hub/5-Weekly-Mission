@@ -1,11 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
 import styles from './LinkCard.module.css';
-import noImagePlaceholder from '../../assets/images/placeholder_image.png';
-import starIcon from '../../assets/images/star.svg';
-import purpleStarIcon from '../../assets/images/purplestar.svg';
-import kebab from '../../assets/images/kebab.svg';
-import getTimeDifference from '../../utils/time-functions/getTimeDifference';
-import formatDate from '../../utils/time-functions/formatDate';
+import noImagePlaceholder from '@assets/images/placeholder_image.png';
+import starIcon from '@assets/images/star.svg';
+import purpleStarIcon from '@assets/images/purplestar.svg';
+import kebab from '@assets/images/kebab.svg';
+import getTimeDifference from '@utils/time-functions/getTimeDifference';
+import formatDate from '@utils/time-functions/formatDate';
 
 interface LinkCardProp {
   linkCardInfo: { [key: string]: any };

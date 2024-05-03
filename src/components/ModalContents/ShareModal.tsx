@@ -1,9 +1,9 @@
-import facebook from '../../assets/images/facebook.svg';
-import share from '../../assets/images/link.svg';
-import kakao from '../../assets/images/kakao.svg';
+import facebook from '@assets/images/facebook.svg';
+import share from '@assets/images/link.svg';
+import kakao from '@assets/images/kakao.svg';
 import styles from './ModalContents.module.css';
-import { facebookShare } from '../../utils/shareFunctions/facebooShare';
-import { kakaoShare } from '../../utils/shareFunctions/kakaoshare';
+import { facebookShare } from '@utils/shareFunctions/facebooShare';
+import { kakaoShare } from '@utils/shareFunctions/kakaoshare';
 import { useState } from 'react';
 
 interface ShareModalProps {

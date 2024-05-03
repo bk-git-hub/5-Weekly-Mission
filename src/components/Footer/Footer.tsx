@@ -1,8 +1,8 @@
 import React, { forwardRef } from 'react';
-import facebookLogo from '../../assets/images/facebook_logo.svg';
-import twitterLogo from '../../assets/images/twitter_logo.svg';
-import youtubeLogo from '../../assets/images/youtube_logo.svg';
-import instagramLogo from '../../assets/images/instagram_logo.svg';
+import facebookLogo from '@assets/images/facebook_logo.svg';
+import twitterLogo from '@assets/images/twitter_logo.svg';
+import youtubeLogo from '@assets/images/youtube_logo.svg';
+import instagramLogo from '@assets/images/instagram_logo.svg';
 import styles from './Footer.module.css';
 
 const Footer = forwardRef<any, any>((props, ref) => {

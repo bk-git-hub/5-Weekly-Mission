@@ -1,7 +1,7 @@
 import styles from './SearchBar.module.css'; // Import the CSS module
-import searchIcon from '../../assets/images/search_icon.svg';
-import { useState, ChangeEvent } from 'react';
-import deleteTextIcon from '../../assets/images/delete_text.png';
+import searchIcon from '@assets/images/search_icon.svg';
+import { ChangeEvent } from 'react';
+import deleteTextIcon from '@assets/images/delete_text.png';
 
 export const SEARCH_INPUT_ID = 'search-link';
 const SEARCH_INPUT_PLACEHOLDER = '링크를 검색하세요';

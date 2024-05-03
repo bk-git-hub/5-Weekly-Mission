@@ -1,10 +1,10 @@
-import addIcon from '../../assets/images/add_icon.svg';
-import addIconWhite from '../../assets/images/add_icon_white.svg';
+import addIcon from '@assets/images/add_icon.svg';
+import addIconWhite from '@assets/images/add_icon_white.svg';
 import FolderToolBarButton from './FolderToolBarButton';
 import styles from './FolderToolBar.module.css';
 import UtilButton from './UtilButton';
 import { UTIL_BUTTONS_PROPS } from './constants';
-import { FolderObject } from '../../utils/interfaces';
+import { FolderObject } from '@utils/interfaces';
 interface FolderToolBarProps {
   folders?: FolderObject[];
   currentFolderId?: number;
