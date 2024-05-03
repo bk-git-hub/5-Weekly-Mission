@@ -1,4 +1,3 @@
-import AddLinkBar from '../../components/AddLinkBar/AddLinkBar';
 import LinkCardList from '../../components/LinkCardList/LinkCardList';
 import { getUserFolders, getUserLinks } from '../../utils/api';
 import { useEffect, useState, useCallback } from 'react';
@@ -146,7 +145,6 @@ export default function FolderPage() {
           <div className={'overlay'} onClick={() => setShowModal(false)}></div>
         </>
       )}
-      <AddLinkBar />
       <LinkCardList
         folders={folders}
         items={links}
