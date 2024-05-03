@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react';
-import Button from '../Button/Button';
+import Button from '@components/Button/Button';
 import linkIcon from '../../assets/images/link.svg';
 import styles from './AddLinkBar.module.css';
 
