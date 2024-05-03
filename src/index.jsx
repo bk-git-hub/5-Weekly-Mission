@@ -8,10 +8,7 @@ import {
 import './index.css';
 import './assets/css/reset.css';
 import SharedPage from './pages/SharedPage/SharedPage';
-import FolderPage from './pages/FolderPage/FolderPage';
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
-import App from './App';
+import App from './pages/FolderPage/FolderPage';
 
 const router = createBrowserRouter([
   {
@@ -34,8 +31,6 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Header />
     <RouterProvider router={router} />
-    <Footer />
   </React.StrictMode>
 );
