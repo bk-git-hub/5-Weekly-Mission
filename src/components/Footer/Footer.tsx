@@ -1,12 +1,13 @@
+import React, { forwardRef } from 'react';
 import facebookLogo from '../../assets/images/facebook_logo.svg';
 import twitterLogo from '../../assets/images/twitter_logo.svg';
 import youtubeLogo from '../../assets/images/youtube_logo.svg';
 import instagramLogo from '../../assets/images/instagram_logo.svg';
 import styles from './Footer.module.css';
 
-export default function Footer() {
+const Footer = forwardRef<any, any>((props, ref) => {
   return (
-    <footer className={styles.mainFooter}>
+    <footer ref={ref} className={styles.mainFooter}>
       <div className={styles.footerBar}>
         <div className={styles.copyright}>©codeit - 2023</div>
         <div className={styles.policyBar}>
@@ -58,4 +59,6 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
+});
+
+export default Footer;
