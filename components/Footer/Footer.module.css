@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
+
+.mainFooter {
+  font-family: Abel, sans-serif;
+  background-color: #111322;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: inherit;
+  padding: 32px 104px 64px;
+}
+
+.footerBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1920px;
+  width: 100%;
+}
+
+.copyright {
+  color: #676767;
+  font-family: Abel;
+  font-size: 1em;
+  line-height: normal;
+}
+
+.policyBar {
+  display: flex;
+  gap: 30px;
+  color: #cfcfcf;
+  font-family: Abel;
+  font-size: 1em;
+}
+
+.infoLinkList {
+  display: flex;
+  gap: 12px;
+}
+
+.footerLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+@media (max-width: 767px) {
+  .mainFooter {
+    padding: 32px;
+  }
+
+  .footerBar {
+    display: grid;
+    grid-template-columns: 181px 116px;
+    column-gap: auto;
+    row-gap: 60px;
+  }
+
+  .copyright {
+    order: 1;
+  }
+}
+
+.infoLinkLogo {
+  width: 24px;
+  height: 24px;
+  position: relative;
+}
