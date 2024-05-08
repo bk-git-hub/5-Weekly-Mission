@@ -1,0 +1,17 @@
+.headerContainer {
+  padding: 20px 200px;
+}
+
+.headerBar {
+  position: relative;
+  display: flex;
+  max-width: 1920px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logoImageContainer {
+  position: relative;
+  width: 133px;
+  height: 24px;
+}
