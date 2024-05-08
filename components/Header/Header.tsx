@@ -1,14 +1,15 @@
 import Button from '../Button/Button';
 import Image from 'next/image';
 import styles from './Header.module.css';
+import Link from 'next/link';
 export default function Header() {
   return (
     <>
       <header className={styles.headerContainer}>
         <div className={styles.headerBar}>
-          <div className={styles.logoImageContainer}>
+          <Link className={styles.logoImageContainer} href={`/`}>
             <Image src='/assets/images/logo.svg' alt='Logo' fill />
-          </div>
+          </Link>
           <Button>{'로그인'}</Button>
         </div>
       </header>
