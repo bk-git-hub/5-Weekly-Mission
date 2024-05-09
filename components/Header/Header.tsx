@@ -10,7 +10,9 @@ export default function Header() {
           <Link className={styles.logoImageContainer} href={`/`}>
             <Image src='/assets/images/logo.svg' alt='Logo' fill />
           </Link>
-          <Button className={styles.signInButton}>로그인</Button>
+          <Link href={'/signin'}>
+            <Button className={styles.signInButton}>로그인</Button>
+          </Link>
         </div>
       </header>
     </>
