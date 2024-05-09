@@ -5,9 +5,10 @@ import styles from './AuthHeader.module.css';
 interface AuthHeaderProps {
   text: string;
   linkText: string;
+  link: string;
 }
 
-export default function AuthHeader({ text, linkText }: AuthHeaderProps) {
+export default function AuthHeader({ text, linkText, link }: AuthHeaderProps) {
   return (
     <div className={styles.authPageHeader}>
       <Link href={'/'} className={styles.logo}>
@@ -16,7 +17,7 @@ export default function AuthHeader({ text, linkText }: AuthHeaderProps) {
 
       <div className={styles.membershipPromptBar}>
         <span className={styles.membershipPromptText}>{text}</span>
-        <Link href={'/signin'} className={styles.membershipPromptLink}>
+        <Link href={link} className={styles.membershipPromptLink}>
           {linkText}
         </Link>
       </div>
