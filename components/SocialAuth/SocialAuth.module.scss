@@ -1,0 +1,16 @@
+@use '@/styles/mixins' as m;
+
+.socialAuthWrapper {
+  @include m.flex(row, space-between, center);
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: 1px solid #ccd5e3;
+  background: #e7effb;
+  width: 100%;
+  font-size: 14px;
+}
+
+.socialButtonBar {
+  display: flex;
+  gap: 16px;
+}
