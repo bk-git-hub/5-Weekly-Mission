@@ -2,8 +2,10 @@
 
 :root {
   --background-color: #f0f6ff;
+  --Linkbrary-primary-color: #6d6afe;
 }
 
 body {
   background-color: var(--background-color);
+  font-family: Pretendard, sans-serif;
 }
