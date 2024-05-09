@@ -3,10 +3,17 @@ import { Inter } from 'next/font/google';
 import styles from '@/styles/Home.module.css';
 import Button from '@/components/Button/Button';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
+  const router = useRouter(); // Access the router object
+
+  const handleAddLinkClick = () => {
+    router.push('/signup'); // Navigate to /signup route when button is clicked
+  };
+
   return (
     <>
       <Head>
@@ -22,7 +29,9 @@ export default function Home() {
             <span>쉽게 저장하고</span>
             관리해 보세요
           </h2>
-          <Button className={styles.addLinkButton}>링크 추가하기</Button>
+          <Button className={styles.addLinkButton} onClick={handleAddLinkClick}>
+            링크 추가하기
+          </Button>
           <div className={styles.mainImageWrapper}>
             <Image
               src='/assets/images/homeImage.png'
