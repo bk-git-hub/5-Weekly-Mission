@@ -1,6 +1,6 @@
 import AuthInput from '../AuthInput/AuthInput';
 import Button from '../Button/Button';
-import styles from './SignUpForm.module.scss';
+import styles from '@/styles/AuthForm.module.scss';
 
 export default function SignUpForm() {
   return (
