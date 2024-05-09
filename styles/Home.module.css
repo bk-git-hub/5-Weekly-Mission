@@ -3,9 +3,17 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 6rem;
+  padding: 70px 360px;
   min-height: 100vh;
 }
+
+.mainSection {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  align-items: center;
+}
+
 .mainHeading {
   color: #000;
   font-size: 4em;
@@ -15,6 +23,11 @@
   width: 708px;
   text-align: center;
   font-family: Pretendard, sans-serif;
+}
+
+.addLinkButton {
+  width: 350px;
+  padding: 16px 20px;
 }
 
 .gradient1 {
