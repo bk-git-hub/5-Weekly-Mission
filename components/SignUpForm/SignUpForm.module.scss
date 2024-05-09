@@ -1,0 +1,11 @@
+@use '@/styles/mixins' as a;
+
+.authForm {
+  @include a.flex(column);
+  gap: 24px;
+}
+
+.signUpButton {
+  padding: 16px 20px;
+  margin-top: 20px;
+}
