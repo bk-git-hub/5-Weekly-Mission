@@ -15,3 +15,8 @@
   width: 133px;
   height: 24px;
 }
+
+.signInButton {
+  padding: 16px 20px;
+  width: 128px;
+}
