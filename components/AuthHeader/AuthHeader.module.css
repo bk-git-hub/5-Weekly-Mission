@@ -1,0 +1,27 @@
+.authPageHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+.logo {
+  position: relative;
+  width: 218px;
+  height: 38px;
+}
+
+.membershipPromptBar {
+  display: flex;
+  gap: 8px;
+  font-family: inherit;
+}
+
+.membershipPromptText {
+  font-family: inherit;
+}
+
+.membershipPromptLink {
+  text-decoration: underline;
+  color: var(--Linkbrary-primary-color);
+}
