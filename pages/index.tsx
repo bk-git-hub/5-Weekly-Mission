@@ -31,6 +31,81 @@ export default function Home() {
             />
           </div>
         </section>
+        <section className={styles.featureSection}>
+          <div className={styles.featureCard}>
+            <div className={styles.featureDescription}>
+              <h3 className={styles.featureDescriptionHeading}>
+                <em className={styles.gradient2}>원하는 링크</em>를 저장하세요
+              </h3>
+              <p>
+                나중에 읽고 싶은 글, 다시 보고 싶은 영상, 사고 싶은 옷, 기억하고
+                싶은 모든 것을 한 공간에 저장하세요.
+              </p>
+            </div>
+
+            <Image
+              src={'/assets/images/feature1.png'}
+              width={550}
+              height={450}
+              alt='Link Save Feature example'
+            />
+          </div>
+
+          <div className={styles.featureCard}>
+            <Image
+              src={'/assets/images/feature2.png'}
+              width={550}
+              height={450}
+              alt='Link Manage Feature example'
+            />
+
+            <div className={styles.featureDescription}>
+              <h3 className={styles.featureDescriptionHeading}>
+                링크를 폴더로
+                <em className={styles.gradient3}>관리</em>하세요
+              </h3>
+              <p>
+                나만의 폴더를 무제한으로 만들고 다양하게 활용할 수 있습니다.
+              </p>
+            </div>
+          </div>
+
+          <div className={styles.featureCard}>
+            <div className={styles.featureDescription}>
+              <h3 className={styles.featureDescriptionHeading}>
+                저장한 링크를
+                <em className={styles.gradient4}>공유</em>해 보세요.
+              </h3>
+              <p>
+                여러 링크를 폴더에 담고 공유할 수 있습니다. 가족, 친구,
+                동료들에게 쉽고 빠르게 링크를 공유해 보세요.
+              </p>
+            </div>
+
+            <Image
+              src={'/assets/images/feature3.png'}
+              width={550}
+              height={450}
+              alt='Link Share Feature example'
+            />
+          </div>
+
+          <div className={styles.featureCard}>
+            <Image
+              src={'/assets/images/feature4.png'}
+              width={550}
+              height={450}
+              alt='Link Search Feature example'
+            />
+            <div className={styles.featureDescription}>
+              <h3 className={styles.featureDescriptionHeading}>
+                저장한 링크를
+                <em className={styles.gradient5}>검색</em>해 보세요
+              </h3>
+              <p>중요한 정보들을 검색으로 쉽게 찾아보세요.</p>
+            </div>
+          </div>
+        </section>
       </main>
     </>
   );
