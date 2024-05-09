@@ -30,6 +30,12 @@
   padding: 16px 20px;
 }
 
+.mainImageWrapper {
+  position: relative;
+  width: 1118px;
+  height: 659px;
+}
+
 .gradient1 {
   background: linear-gradient(91deg, #6d6afe 17.28%, #ff9f9f 74.98%);
   background-clip: text;
