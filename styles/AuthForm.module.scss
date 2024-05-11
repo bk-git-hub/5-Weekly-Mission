@@ -1,11 +1,56 @@
-@use '@/styles/mixins' as a;
+@use '@/styles/mixins' as m;
 
 .authForm {
-  @include a.flex(column);
+  @include m.flex(column);
   gap: 24px;
 }
 
 .signUpButton {
   padding: 16px 20px;
   margin-top: 20px;
+}
+
+.inputBox {
+  @include m.flex(column);
+  position: relative;
+  gap: 12px;
+}
+
+.inputWrapper {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #ccd5e3;
+  padding: 18px 15px;
+  border-radius: 8px;
+  background-color: #fff;
+  width: 370px;
+}
+
+.inputWrapper:focus-within {
+  border: 1px solid var(--Linkbrary-primary-color);
+}
+
+.authInput {
+  width: 100%;
+  border: none; /* Remove border from authInput to avoid double border */
+}
+
+.toggleButton {
+  position: relative;
+  width: 16px;
+  height: 16px;
+
+  &:hover {
+    filter: brightness(0);
+  }
+}
+
+.errorMessage {
+  position: absolute;
+  bottom: -25px;
+  color: red;
+}
+
+.errorInput {
+  border: 1px solid red;
 }
