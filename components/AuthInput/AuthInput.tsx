@@ -1,13 +1,17 @@
 import { useState } from 'react';
 import styles from './AuthInput.module.scss';
 import Image from 'next/image';
-import { text } from 'stream/consumers';
 
 interface AuthInputProps {
   type: string;
   labelText: string;
   id: string;
   enableVisibilityToggle: boolean;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: () => void; // Add onBlur event handler
+  error?: string;
+  hasError:boolean;
 }
 
 export default function AuthInput({
@@ -15,6 +19,10 @@ export default function AuthInput({
   labelText,
   id,
   enableVisibilityToggle,
+  value,
+  onChange,
+  onBlur,
+  error, // Add error prop
 }: AuthInputProps) {
   const [showText, setShowText] = useState(false);
 
@@ -27,7 +35,14 @@ export default function AuthInput({
     <div className={styles.inputBox}>
       <label htmlFor={id}>{labelText}</label>
       <div className={styles.inputWrapper}>
-        <input type={inputType} id={id} className={styles.authInput} />
+        <input
+          type={inputType}
+          id={id}
+          className={styles.authInput}
+          value={value}
+          onChange={onChange}
+          onBlur={onBlur} // Add onBlur event handler
+        />
         {enableVisibilityToggle && (
           <button
             onClick={handleToggleClick}
@@ -50,6 +65,8 @@ export default function AuthInput({
           </button>
         )}
       </div>
+      {error && <p className={styles.error}>{error}</p>}{' '}
+      {/* Display error message if error exists */}
     </div>
   );
 }
