@@ -5,6 +5,7 @@ interface ButtonProps {
   onClick?: () => void;
   className?: string;
   type?: 'button' | 'submit' | 'reset' | undefined;
+  disabled?: boolean;
 }
 
 const Button = ({
@@ -12,14 +13,16 @@ const Button = ({
   onClick,
   className,
   type = 'button',
+  disabled = false,
 }: ButtonProps) => {
   return (
     <button
       onClick={onClick}
       className={`${className} ${styles.btn}`}
       type={type}
+      disabled={disabled}
     >
-      {children}
+      {disabled ? '처리중' : children}
     </button>
   );
 };
