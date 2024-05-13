@@ -3,6 +3,8 @@ import styles from '@/styles/AuthForm.module.scss';
 import { z } from 'zod';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
+import ShowTextToggle from '../ShowTextToggle/ShowTextToggle';
 
 const schema = z.object({
   email: z
@@ -26,6 +28,12 @@ export default function SignInForm() {
   } = useForm<SignInFormFields>({
     resolver: zodResolver(schema),
   });
+
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleToggleClick = () => {
+    setShowPassword(!showPassword);
+  };
 
   const onSubmit: SubmitHandler<SignInFormFields> = async (data) => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -61,10 +69,11 @@ export default function SignInForm() {
         >
           <input
             {...register('password')}
-            type='password'
+            type={showPassword ? 'text' : 'password'}
             placeholder='Password'
             className={styles.authInput}
           />
+          <ShowTextToggle showText={showPassword} onClick={handleToggleClick} />
         </div>
         {errors.password && (
           <div className={styles.errorMessage}>{errors.password.message}</div>
