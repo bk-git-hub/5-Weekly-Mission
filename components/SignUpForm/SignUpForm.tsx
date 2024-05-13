@@ -5,6 +5,8 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import ShowTextToggle from '../ShowTextToggle/ShowTextToggle';
+import { axiosInstance } from '@/utils/axiosInstance';
+import { useRouter } from 'next/router';
 
 const schema = z
   .object({
@@ -38,18 +40,40 @@ export default function SignUpForm() {
     handleSubmit,
     formState: { errors, isSubmitting },
     trigger,
+    setError,
   } = useForm<SignUpFormFields>({
     resolver: zodResolver(schema),
   });
 
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showCPW, setShowCPW] = useState<boolean>(false);
 
   const onSubmit: SubmitHandler<SignUpFormFields> = async (data) => {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    console.log(data);
-  };
+    const { email, password } = data;
+    try {
+      const response = await axiosInstance.post('/check-email', {
+        email: email,
+      });
+    } catch (error) {
+      setError('email', { message: '이미 사용중인 이메일입니다' });
+      return;
+    }
 
+    try {
+      const response = await axiosInstance.post('/sign-up', {
+        email,
+        password,
+      });
+      if (response.status >= 200 && response.status < 300) {
+        const accessToken = response.data.data.accessToken;
+        localStorage.setItem('accessToken', accessToken);
+        router.push('/folder');
+      }
+    } catch (error) {
+      setError('email', { message: '사용할 수 없는 이메일 입니다' });
+    }
+  };
   const handlePWToggleClick = () => {
     setShowPassword(!showPassword);
   };
