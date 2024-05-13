@@ -44,6 +44,8 @@ export default function SignInForm() {
     try {
       const response = await axiosInstance.post('/sign-in', data);
       if (response.status >= 200 && response.status < 300) {
+        const accessToken = response.data.data.accessToken;
+        localStorage.setItem('accessToken', accessToken);
         router.push('/folder');
       } else {
       }
