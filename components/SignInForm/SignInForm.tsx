@@ -25,6 +25,7 @@ export default function SignInForm() {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
+    trigger,
   } = useForm<SignInFormFields>({
     resolver: zodResolver(schema),
   });
@@ -54,6 +55,7 @@ export default function SignInForm() {
             type='text'
             placeholder='Email'
             className={styles.authInput}
+            onBlur={() => trigger('email')}
           />
         </div>
         {errors.email && (
@@ -72,6 +74,7 @@ export default function SignInForm() {
             type={showPassword ? 'text' : 'password'}
             placeholder='Password'
             className={styles.authInput}
+            onBlur={() => trigger('password')}
           />
           <ShowTextToggle showText={showPassword} onClick={handleToggleClick} />
         </div>
