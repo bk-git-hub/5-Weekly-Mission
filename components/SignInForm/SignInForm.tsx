@@ -37,7 +37,6 @@ export default function SignInForm() {
   const router = useRouter();
 
   const handleToggleClick = () => {
-    console.log(errors);
     setShowPassword(!showPassword);
   };
 
