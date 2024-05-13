@@ -5,6 +5,8 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import ShowTextToggle from '../ShowTextToggle/ShowTextToggle';
+import { axiosInstance } from '@/utils/axiosInstance';
+import { useRouter } from 'next/router';
 
 const schema = z.object({
   email: z
@@ -26,19 +28,30 @@ export default function SignInForm() {
     handleSubmit,
     formState: { errors, isSubmitting },
     trigger,
+    setError,
   } = useForm<SignInFormFields>({
     resolver: zodResolver(schema),
   });
 
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
 
   const handleToggleClick = () => {
+    console.log(errors);
     setShowPassword(!showPassword);
   };
 
   const onSubmit: SubmitHandler<SignInFormFields> = async (data) => {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    console.log(data);
+    try {
+      const response = await axiosInstance.post('/sign-in', data);
+      if (response.status >= 200 && response.status < 300) {
+        router.push('/folder');
+      } else {
+      }
+    } catch (error) {
+      setError('email', { message: '이메일을 확인해주세요' });
+      setError('password', { message: '비밀번호를 확인해주세요' });
+    }
   };
 
   return (
