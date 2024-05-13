@@ -11,6 +11,7 @@ export default function ShowTextToggle({
 }: ShowTextToggleProps) {
   return (
     <button
+      type='button'
       onClick={onClick}
       style={{ width: '16px', height: '16px', position: 'relative' }} // 객체 형태로 스타일 지정
     >
