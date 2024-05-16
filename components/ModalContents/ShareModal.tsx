@@ -6,6 +6,7 @@ import { facebookShare } from '@/utils/shareFunctions/facebooShare';
 import { kakaoShare } from '@/utils/shareFunctions/kakaoshare';
 import { useState } from 'react';
 import { ModalContentProps } from '@/utils/interfaces';
+import Image from 'next/image';
 
 interface ShareButtonProps {
   text: string;
@@ -61,7 +62,7 @@ export default function ShareModal({
           <li key={item.id}>
             <div className={styles.shareButtonWrapper}>
               <button className={styles.shareButton} onClick={item.onClick}>
-                <img src={item.icon} alt={item.text} />
+                <Image src={item.icon} alt={item.text} fill />
               </button>
               <span>{item.text}</span>
             </div>
