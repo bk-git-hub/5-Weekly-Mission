@@ -4,8 +4,25 @@ import styles from './Header.module.css';
 import Link from 'next/link';
 import Account from '@/components/Account/Account';
 import { useUserInfo } from '@/contexts/UserInfoContext';
+import { axiosInstance } from '@/utils/axiosInstance';
+import { useEffect } from 'react';
 export default function Header() {
-  const { userInfo } = useUserInfo();
+  const { userInfo, setUserInfo } = useUserInfo();
+  const loadUser = async () => {
+    const accessToken = localStorage.getItem('accessToken');
+    if (accessToken) {
+      const response = await axiosInstance.get('/users', {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      setUserInfo(response.data.data[0]);
+    }
+  };
+
+  useEffect(() => {
+    loadUser();
+  }, []);
   return (
     <>
       <header className={styles.headerContainer}>
