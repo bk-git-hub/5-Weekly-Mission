@@ -2,6 +2,7 @@ export interface FolderObj {
   id: number;
   name: string;
   user_id: number;
+  link?: { count: number };
 }
 
 export interface LinkObj {
