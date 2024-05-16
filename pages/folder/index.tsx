@@ -1,12 +1,21 @@
+import LinkCardList from '@/components/LinkCardList/LinkCardList';
 import { useUserInfo } from '@/contexts/UserInfoContext';
 import { axiosInstance } from '@/utils/axiosInstance';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import { FolderObj, LinkObj } from '@/utils/interfaces';
+
+const allFolder = {
+  id: -1,
+  name: '전체',
+  user_id: -1,
+};
 
 export default function Folder() {
+  const [currentFolderId, setCurrentFolderId] = useState(-1);
   const { userInfo, setUserInfo } = useUserInfo();
-  const [folders, setFolders] = useState();
-  const [links, setLinks] = useState();
+  const [folders, setFolders] = useState<FolderObj[]>([]);
+  const [links, setLinks] = useState<LinkObj[]>();
   const router = useRouter();
 
   const loadUser = async () => {
@@ -20,12 +29,14 @@ export default function Folder() {
       },
     });
     setUserInfo(response.data.data[0]);
+    setCurrentFolderId(-1);
   };
 
   const getUserFolders = async () => {
     if (userInfo) {
       const response = await axiosInstance.get(`/users/${userInfo.id}/folders`);
-      setFolders(response.data.data);
+      allFolder.user_id = userInfo.id;
+      setFolders([allFolder, ...response.data.data]);
     }
   };
 
@@ -46,7 +57,13 @@ export default function Folder() {
   useEffect(() => {
     getUserFolders();
     getUserLinks();
+    console.log(folders);
+    console.log(links);
   }, [userInfo]);
 
-  return <div>FolderPage</div>;
+  return (
+    <>
+      <LinkCardList folders={folders} items={links} />
+    </>
+  );
 }
