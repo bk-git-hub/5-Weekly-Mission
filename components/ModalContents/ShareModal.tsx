@@ -35,7 +35,7 @@ export default function ShareModal({
 }: ModalContentProps) {
   const [showToast, setShowToast] = useState(false);
 
-  const SHARE_URL = `https://bk-part2.netlify.app/shared/${folderNum}`;
+  const SHARE_URL = `http://localhost:3000/shared/${folderNum}`;
 
   const handleCopyLinkClipBoard = async () => {
     try {
