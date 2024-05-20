@@ -11,7 +11,7 @@ interface AuthHeaderProps {
 export default function AuthHeader({ text, linkText, link }: AuthHeaderProps) {
   return (
     <div className={styles.authPageHeader}>
-      <Link href={'/'} className={styles.logo}>
+      <Link href='/' className={styles.logo}>
         <Image src={'/assets/images/logo.svg'} fill alt='Linkbrary' />
       </Link>
 
