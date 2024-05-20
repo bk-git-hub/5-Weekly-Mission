@@ -24,25 +24,23 @@ export default function Header() {
     loadUser();
   }, []);
   return (
-    <>
-      <header className={styles.headerContainer}>
-        <div className={styles.headerBar}>
-          <Link className={styles.logoImageContainer} href={`/`}>
-            <Image src='/assets/images/logo.svg' alt='Logo' fill />
-          </Link>
+    <header className={styles.headerContainer}>
+      <div className={styles.headerBar}>
+        <Link className={styles.logoImageContainer} href={`/`}>
+          <Image src='/assets/images/logo.svg' alt='Logo' fill />
+        </Link>
 
-          {userInfo ? (
-            <Account
-              profileImgSource={userInfo.image_source}
-              userEmail={userInfo.email}
-            />
-          ) : (
-            <Link href={'/signin'}>
-              <Button className={styles.signInButton}>로그인</Button>
-            </Link>
-          )}
-        </div>
-      </header>
-    </>
+        {userInfo ? (
+          <Account
+            profileImgSource={userInfo.image_source}
+            userEmail={userInfo.email}
+          />
+        ) : (
+          <Link href={'/signin'}>
+            <Button className={styles.signInButton}>로그인</Button>
+          </Link>
+        )}
+      </div>
+    </header>
   );
 }
