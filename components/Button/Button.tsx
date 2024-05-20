@@ -8,13 +8,13 @@ interface ButtonProps {
   disabled?: boolean;
 }
 
-const Button = ({
+export default function Button({
   children,
   onClick,
   className,
   type = 'button',
   disabled = false,
-}: ButtonProps) => {
+}: ButtonProps) {
   return (
     <button
       onClick={onClick}
@@ -25,6 +25,4 @@ const Button = ({
       {disabled ? '처리중' : children}
     </button>
   );
-};
-
-export default Button;
+}

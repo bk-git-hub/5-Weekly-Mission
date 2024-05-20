@@ -13,7 +13,7 @@ interface SearchBarProps {
   searchText: string;
 }
 
-const SearchBar = ({ onChange, searchText }: SearchBarProps) => {
+export default function SearchBar({ onChange, searchText }: SearchBarProps) {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     onChange(e.target.value);
@@ -48,6 +48,4 @@ const SearchBar = ({ onChange, searchText }: SearchBarProps) => {
       )}
     </form>
   );
-};
-
-export default SearchBar;
+}

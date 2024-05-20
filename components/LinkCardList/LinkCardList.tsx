@@ -18,7 +18,7 @@ interface LinkCardListProp {
   onShare: () => void;
 }
 
-const LinkCardList = ({
+export default function LinkCardList({
   items,
   folders,
   folderNameOnClick,
@@ -29,7 +29,7 @@ const LinkCardList = ({
   onLinkDelete,
   onAddtoFolder,
   onShare,
-}: LinkCardListProp) => {
+}: LinkCardListProp) {
   const [searchText, setSearchText] = useState<string>('');
 
   const handleSearchInput = (text: string) => {
@@ -83,6 +83,4 @@ const LinkCardList = ({
       </div>
     </div>
   );
-};
-
-export default LinkCardList;
+}
