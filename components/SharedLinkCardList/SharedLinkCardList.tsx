@@ -1,3 +1,5 @@
+'use client';
+
 import { LinkObj } from '@/utils/interfaces';
 import SearchBar from '@/components/SearchBar/SearchBar';
 import styles from '@/components/LinkCardList/LinkCardList.module.scss';
