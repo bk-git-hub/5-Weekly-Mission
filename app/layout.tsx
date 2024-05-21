@@ -1,17 +1,16 @@
-import { ReactNode } from 'react';
 import { UserInfoProvider } from '@/contexts/UserInfoContext';
 import '@/styles/reset.css';
 import '@/styles/globals.css';
 
-interface AuthLayoutProps {
-  children: ReactNode;
-}
-
-export default function AuthLayout({ children }: AuthLayoutProps) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html lang='en'>
+    <html lang='ko'>
       <head>
-        <title>회원가입</title>
+        <title>Linkbrary</title>
       </head>
       <body>
         <UserInfoProvider>{children}</UserInfoProvider>
