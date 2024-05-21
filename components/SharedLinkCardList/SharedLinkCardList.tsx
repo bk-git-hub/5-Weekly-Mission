@@ -1,8 +1,8 @@
 import { LinkObj } from '@/utils/interfaces';
-import SearchBar from '../SearchBar/SearchBar';
+import SearchBar from '@/components/SearchBar/SearchBar';
 import styles from '@/components/LinkCardList/LinkCardList.module.scss';
 import { useState } from 'react';
-import SharedLinkCard from '../SharedLinkCard/SharedLinkCard';
+import SharedLinkCard from '@/components/SharedLinkCard/SharedLinkCard';
 interface SharedLinkCardListProps {
   items: LinkObj[] | undefined;
 }

@@ -1,11 +1,11 @@
 'use client';
 
-import Button from '../Button/Button';
+import Button from '@/components/Button/Button';
 import styles from '@/styles/AuthForm.module.scss';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
-import ShowTextToggle from '../ShowTextToggle/ShowTextToggle';
+import ShowTextToggle from '@/components/ShowTextToggle/ShowTextToggle';
 import { axiosInstance } from '@/utils/axiosInstance';
 import { useRouter } from 'next/navigation';
 import { SignUpFormSchema, SignUpFormFields } from '@/app/lib/definitions';

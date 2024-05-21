@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import styles from '../LinkCard/LinkCard.module.scss';
+import styles from '@/components/LinkCard/LinkCard.module.scss';
 import getTimeDifference from '@/utils/time-functions/getTimeDifference';
 import formatDate from '@/utils/time-functions/formatDate';
 import { LinkObj } from '@/utils/interfaces';

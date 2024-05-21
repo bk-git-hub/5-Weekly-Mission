@@ -1,6 +1,6 @@
 'use client';
 
-import Button from '../Button/Button';
+import Button from '@/components/Button/Button';
 import Image from 'next/image';
 import styles from './Header.module.css';
 import Link from 'next/link';
