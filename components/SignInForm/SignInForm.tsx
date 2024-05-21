@@ -1,3 +1,5 @@
+'use client';
+
 import Button from '../Button/Button';
 import styles from '@/styles/AuthForm.module.scss';
 import { z } from 'zod';
@@ -6,7 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import ShowTextToggle from '../ShowTextToggle/ShowTextToggle';
 import { axiosInstance } from '@/utils/axiosInstance';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 const schema = z.object({
   email: z
