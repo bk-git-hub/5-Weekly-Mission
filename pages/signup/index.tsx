@@ -8,11 +8,10 @@ export default function SignUp() {
     <>
       <main className={styles.authPage}>
         <div className={styles.authPageContainer}>
-          <AuthHeader
-            text='이미 회원이신가요?'
-            linkText='로그인하기'
-            link='/signin'
-          />
+          <AuthHeader>
+            <AuthHeader.Description>이미 회원이신가요??</AuthHeader.Description>
+            <AuthHeader.Link href={'/signin'}>로그인하기</AuthHeader.Link>
+          </AuthHeader>
           <SignUpForm />
           <SocialAuth text='다른 방식으로 가입하기' />
         </div>
