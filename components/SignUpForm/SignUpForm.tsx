@@ -2,39 +2,15 @@
 
 import Button from '../Button/Button';
 import styles from '@/styles/AuthForm.module.scss';
-import { z } from 'zod';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import ShowTextToggle from '../ShowTextToggle/ShowTextToggle';
 import { axiosInstance } from '@/utils/axiosInstance';
 import { useRouter } from 'next/navigation';
+import { SignUpFormSchema, SignUpFormFields } from '@/app/lib/definitions';
 
-const schema = z
-  .object({
-    email: z
-      .string()
-      .min(1, { message: '이메일을 입력해주세요' })
-      .email({ message: '올바른 이메일 형식이 아닙니다' }),
-
-    password: z
-      .string()
-      .min(1, { message: '비밀번호를 입력해주세요' })
-      .min(8, {
-        message: '비밀번호는 최소 8자 이상 영문, 숫자 조합이어야 합니다.',
-      })
-      .regex(/^(?=.*[A-Za-z])(?=.*\d).{8,}$/, {
-        message: '비밀번호는 영문과 조합이어야 합니다',
-      }),
-
-    confirmPassword: z.string().min(1, { message: '비밀번호를 입력해주세요' }),
-  })
-  .refine((data) => data.confirmPassword === data.password, {
-    message: '비밀번호가 일치하지 않습니다.',
-    path: ['confirmPassword'],
-  });
-
-type SignUpFormFields = z.infer<typeof schema>;
+const schema = SignUpFormSchema;
 
 export default function SignUpForm() {
   const {
