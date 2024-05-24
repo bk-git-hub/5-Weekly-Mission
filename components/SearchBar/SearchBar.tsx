@@ -3,24 +3,22 @@ import searchIcon from '@/public/assets/images/search_icon.svg';
 import { ChangeEvent } from 'react';
 import deleteTextIcon from '@/public/assets/images/delete_text.png';
 import Image from 'next/image';
+import { useKeywordState } from '@/pages/folder/containers/useSearchValue';
 
 export const SEARCH_INPUT_ID = 'search-link';
 const SEARCH_INPUT_PLACEHOLDER = '링크를 검색하세요';
 const SEARCH_INPUT_ICON_ALT = 'Search Icon';
 
-interface SearchBarProps {
-  onChange: (keyword: string) => void;
-  searchText: string;
-}
+export default function SearchBar() {
+  const { keyword, setKeyword } = useKeywordState();
 
-export default function SearchBar({ onChange, searchText }: SearchBarProps) {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    onChange(e.target.value);
+    setKeyword(e.target.value);
   };
 
   const handleSearchDelete = () => {
-    onChange('');
+    setKeyword('');
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -38,10 +36,10 @@ export default function SearchBar({ onChange, searchText }: SearchBarProps) {
         id={SEARCH_INPUT_ID}
         placeholder={SEARCH_INPUT_PLACEHOLDER}
         className={styles.searchInput}
-        value={searchText}
         onChange={handleChange}
+        value={keyword}
       />
-      {searchText !== '' && (
+      {keyword !== '' && (
         <button onClick={handleSearchDelete} className={styles.searchButton}>
           <Image src={deleteTextIcon} alt='검색어 삭제' fill />
         </button>
