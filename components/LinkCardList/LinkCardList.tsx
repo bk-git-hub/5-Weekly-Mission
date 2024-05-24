@@ -1,11 +1,11 @@
 import FolderToolBar from '@/components/FolderToolBar/FolderToolBar';
 import LinkCard from '@/components/LinkCard/LinkCard';
 import styles from './LinkCardList.module.scss';
-import { useKeywordState } from '@/pages/folder/containers/useSearchValue';
-import useLinks from '../FolderToolBar/useLinks';
-import useModal from '../FolderToolBar/useModal';
+import { useKeywordState } from '@/hooks/useSearchValue';
+import useLinks from '../../hooks/useLinks';
+import useModal from '../../hooks/useModal';
 import Modal from '../Modal/Modal';
-import useFolders from '../FolderToolBar/useFolders';
+import useFolders from '../../hooks/useFolders';
 
 interface LinkCardListProp {}
 

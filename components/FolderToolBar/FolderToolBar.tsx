@@ -2,12 +2,12 @@ import FolderToolBarButton from './FolderToolBarButton';
 import styles from './FolderToolBar.module.scss';
 import UtilButton from './UtilButton';
 import { UTIL_BUTTONS_PROPS } from './constants';
-import useFolders from './useFolders';
+import useFolders from '../../hooks/useFolders';
 import { useCurrentFolder } from '@/pages/folder/containers/useCurrentFolder';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Modal from '@/components/Modal/Modal';
-import useModal from './useModal';
+import useModal from '../../hooks/useModal';
 
 const addIcon = '/assets/images/add_icon.svg';
 const addIconWhite = '/assets/images/add_icon_white.svg';

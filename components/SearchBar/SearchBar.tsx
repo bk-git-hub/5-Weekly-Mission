@@ -3,7 +3,7 @@ import searchIcon from '@/public/assets/images/search_icon.svg';
 import { ChangeEvent } from 'react';
 import deleteTextIcon from '@/public/assets/images/delete_text.png';
 import Image from 'next/image';
-import { useKeywordState } from '@/pages/folder/containers/useSearchValue';
+import { useKeywordState } from '@/hooks/useSearchValue';
 
 export const SEARCH_INPUT_ID = 'search-link';
 const SEARCH_INPUT_PLACEHOLDER = '링크를 검색하세요';
