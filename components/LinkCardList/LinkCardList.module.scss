@@ -1,0 +1,53 @@
+.linkCardList {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: auto auto auto;
+  justify-content: center;
+}
+
+@media (max-width: 1124px) {
+  .linkCardList {
+    grid-template-columns: auto auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .linkCardList {
+    grid-template-columns: auto;
+  }
+}
+
+.linkCardListContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  width: 100%;
+  padding: 40px 200px 100px;
+  flex-grow: 1;
+}
+
+@media (max-width: 1124px) {
+  .linkCardListContainer {
+    padding: 40px 32px 100px;
+  }
+}
+
+@media (max-width: 767px) {
+  .linkCardListContainer {
+    padding: 20px 32px 60px;
+  }
+}
+
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.noSavedLink {
+  width: 100%;
+  text-align: center;
+  padding: 40px;
+}

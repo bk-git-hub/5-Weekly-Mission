@@ -4,6 +4,12 @@ import { z } from 'zod';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
+import { useState } from 'react';
+import ShowTextToggle from '../ShowTextToggle/ShowTextToggle';
+import { axiosInstance } from '@/utils/axiosInstance';
+import { useRouter } from 'next/router';
+
+
 const schema = z.object({
   email: z
     .string()
@@ -23,13 +29,34 @@ export default function SignInForm() {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
+    trigger,
+    setError,
   } = useForm<SignInFormFields>({
     resolver: zodResolver(schema),
   });
 
+
+  const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
+
+  const handleToggleClick = () => {
+    setShowPassword(!showPassword);
+  };
+
   const onSubmit: SubmitHandler<SignInFormFields> = async (data) => {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    console.log(data);
+    try {
+      const response = await axiosInstance.post('/sign-in', data);
+      if (response.status >= 200 && response.status < 300) {
+        const accessToken = response.data.data.accessToken;
+        localStorage.setItem('accessToken', accessToken);
+        router.push('/folder');
+      } else {
+      }
+    } catch (error) {
+      setError('email', { message: '이메일을 확인해주세요' });
+      setError('password', { message: '비밀번호를 확인해주세요' });
+    }
+
   };
 
   return (
@@ -46,6 +73,7 @@ export default function SignInForm() {
             type='text'
             placeholder='Email'
             className={styles.authInput}
+            onBlur={() => trigger('email')}
           />
         </div>
         {errors.email && (
@@ -61,10 +89,13 @@ export default function SignInForm() {
         >
           <input
             {...register('password')}
-            type='password'
+            type={showPassword ? 'text' : 'password'}
             placeholder='Password'
             className={styles.authInput}
+            onBlur={() => trigger('password')}
           />
+          <ShowTextToggle showText={showPassword} onClick={handleToggleClick} />
+
         </div>
         {errors.password && (
           <div className={styles.errorMessage}>{errors.password.message}</div>

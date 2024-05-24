@@ -3,6 +3,10 @@ import styles from '@/styles/AuthForm.module.scss';
 import { z } from 'zod';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
+import ShowTextToggle from '../ShowTextToggle/ShowTextToggle';
+import { axiosInstance } from '@/utils/axiosInstance';
+import { useRouter } from 'next/router';
 
 const schema = z
   .object({
@@ -14,9 +18,16 @@ const schema = z
     password: z
       .string()
       .min(1, { message: '비밀번호를 입력해주세요' })
-      .min(8, { message: '비밀번호는 최소 8자 이상이어야 합니다.' }),
 
-    confirmPassword: z.string().min(1, { message: '비밀번호를 확인해주세요' }),
+      .min(8, {
+        message: '비밀번호는 최소 8자 이상 영문, 숫자 조합이어야 합니다.',
+      })
+      .regex(/^(?=.*[A-Za-z])(?=.*\d).{8,}$/, {
+        message: '비밀번호는 영문과 조합이어야 합니다',
+      }),
+
+    confirmPassword: z.string().min(1, { message: '비밀번호를 입력해주세요' }),
+
   })
   .refine((data) => data.confirmPassword === data.password, {
     message: '비밀번호가 일치하지 않습니다.',
@@ -30,13 +41,48 @@ export default function SignUpForm() {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
+    trigger,
+    setError,
   } = useForm<SignUpFormFields>({
     resolver: zodResolver(schema),
   });
 
+  const router = useRouter();
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [showCPW, setShowCPW] = useState<boolean>(false);
+
   const onSubmit: SubmitHandler<SignUpFormFields> = async (data) => {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    console.log(data);
+    const { email, password } = data;
+    try {
+      const response = await axiosInstance.post('/check-email', {
+        email: email,
+      });
+    } catch (error) {
+      setError('email', { message: '이미 사용중인 이메일입니다' });
+      return;
+    }
+
+    try {
+      const response = await axiosInstance.post('/sign-up', {
+        email,
+        password,
+      });
+      if (response.status >= 200 && response.status < 300) {
+        const accessToken = response.data.data.accessToken;
+        localStorage.setItem('accessToken', accessToken);
+        router.push('/folder');
+      }
+    } catch (error) {
+      setError('email', { message: '사용할 수 없는 이메일 입니다' });
+    }
+  };
+  const handlePWToggleClick = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleCPWToggleClick = () => {
+    setShowCPW(!showCPW);
+
   };
 
   return (
@@ -53,6 +99,7 @@ export default function SignUpForm() {
             type='text'
             placeholder='Email'
             className={styles.authInput}
+            onBlur={() => trigger('email')}
           />
         </div>
         {errors.email && (
@@ -68,9 +115,16 @@ export default function SignUpForm() {
         >
           <input
             {...register('password')}
-            type='password'
+
+            type={showPassword ? 'text' : 'password'}
             placeholder='Password'
             className={styles.authInput}
+            onBlur={() => trigger('password')}
+          />
+
+          <ShowTextToggle
+            showText={showPassword}
+            onClick={handlePWToggleClick}
           />
         </div>
         {errors.password && (
@@ -86,10 +140,12 @@ export default function SignUpForm() {
         >
           <input
             {...register('confirmPassword')}
-            type='password'
+            type={showCPW ? 'text' : 'password'}
             placeholder='Confirm Password'
             className={styles.authInput}
+            onBlur={() => trigger('confirmPassword')}
           />
+          <ShowTextToggle showText={showCPW} onClick={handleCPWToggleClick} />
         </div>
         {errors.confirmPassword && (
           <div className={styles.errorMessage}>
