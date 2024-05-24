@@ -1,6 +1,7 @@
 import AddLinkBar from '@/components/AddLinkBar/AddLinkBar';
 import FolderPageContent from '@/components/FolderPageContent/FolderPageContent';
 import FolderToolBar from '@/components/FolderToolBar/FolderToolBar';
+import LinkCardList from '@/components/LinkCardLi/LinkCardList';
 import SearchBar from '@/components/SearchBar/SearchBar';
 
 export default function Folder() {
@@ -10,6 +11,7 @@ export default function Folder() {
       <FolderPageContent>
         <SearchBar />
         <FolderToolBar />
+        <LinkCardList />
       </FolderPageContent>
     </>
   );

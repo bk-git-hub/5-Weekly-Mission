@@ -44,6 +44,9 @@ export default function useModal() {
       case 'share':
         setModalContent(createElement(ShareModal, { ...args }));
         break;
+      case 'add':
+        setModalContent(createElement(AddToFolderModal, { ...args }));
+        break;
     }
   };
 
