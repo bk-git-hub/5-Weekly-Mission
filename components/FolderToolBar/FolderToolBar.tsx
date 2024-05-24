@@ -108,10 +108,10 @@ export default function FolderToolBar() {
         </div>
         <div className={styles.folderNameBar}>
           <span className={styles.folderNameDisplay}>{currentFolderName}</span>
-          <ul className={styles.utilButtons}>
-            {Object.entries(UTIL_BUTTONS_PROPS).map(([key, btn]) => (
-              <li key={btn.id}>
-                {currentFolderId !== -1 && (
+          {currentFolderId !== -1 && (
+            <ul className={styles.utilButtons}>
+              {Object.entries(UTIL_BUTTONS_PROPS).map(([key, btn]) => (
+                <li key={btn.id}>
                   <UtilButton
                     imgSrc={btn.imgSrc}
                     alt={btn.alt}
@@ -119,10 +119,10 @@ export default function FolderToolBar() {
                   >
                     {btn.btnText}
                   </UtilButton>
-                )}
-              </li>
-            ))}
-          </ul>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
     </>
