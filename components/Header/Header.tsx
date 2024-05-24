@@ -2,6 +2,7 @@ import Button from '../Button/Button';
 import Image from 'next/image';
 import styles from './Header.module.css';
 import Link from 'next/link';
+
 import Account from '@/components/Account/Account';
 import { useUserInfo } from '@/contexts/UserInfoContext';
 import { axiosInstance } from '@/utils/axiosInstance';
@@ -23,6 +24,7 @@ export default function Header() {
   useEffect(() => {
     loadUser();
   }, []);
+
   return (
     <>
       <header className={styles.headerContainer}>
@@ -41,6 +43,7 @@ export default function Header() {
               <Button className={styles.signInButton}>로그인</Button>
             </Link>
           )}
+
         </div>
       </header>
     </>

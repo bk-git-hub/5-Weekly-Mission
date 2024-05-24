@@ -13,6 +13,7 @@ export default function Home() {
   const { userInfo } = useUserInfo();
   const handleAddLinkClick = () => {
     userInfo ? router.push('/folder') : router.push('/signup'); // Navigate to /signup route when button is clicked
+
   };
 
   return (
@@ -39,6 +40,7 @@ export default function Home() {
               fill
               alt='Page Example Image'
             />
+
           </div>
         </section>
         <section className={styles.featureSection}>

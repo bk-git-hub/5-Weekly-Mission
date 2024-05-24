@@ -3,10 +3,12 @@ import styles from '@/styles/AuthForm.module.scss';
 import { z } from 'zod';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+
 import { useState } from 'react';
 import ShowTextToggle from '../ShowTextToggle/ShowTextToggle';
 import { axiosInstance } from '@/utils/axiosInstance';
 import { useRouter } from 'next/router';
+
 
 const schema = z.object({
   email: z
@@ -33,6 +35,7 @@ export default function SignInForm() {
     resolver: zodResolver(schema),
   });
 
+
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
 
@@ -53,6 +56,7 @@ export default function SignInForm() {
       setError('email', { message: '이메일을 확인해주세요' });
       setError('password', { message: '비밀번호를 확인해주세요' });
     }
+
   };
 
   return (
@@ -91,6 +95,7 @@ export default function SignInForm() {
             onBlur={() => trigger('password')}
           />
           <ShowTextToggle showText={showPassword} onClick={handleToggleClick} />
+
         </div>
         {errors.password && (
           <div className={styles.errorMessage}>{errors.password.message}</div>

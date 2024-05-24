@@ -18,6 +18,7 @@ const schema = z
     password: z
       .string()
       .min(1, { message: '비밀번호를 입력해주세요' })
+
       .min(8, {
         message: '비밀번호는 최소 8자 이상 영문, 숫자 조합이어야 합니다.',
       })
@@ -26,6 +27,7 @@ const schema = z
       }),
 
     confirmPassword: z.string().min(1, { message: '비밀번호를 입력해주세요' }),
+
   })
   .refine((data) => data.confirmPassword === data.password, {
     message: '비밀번호가 일치하지 않습니다.',
@@ -80,6 +82,7 @@ export default function SignUpForm() {
 
   const handleCPWToggleClick = () => {
     setShowCPW(!showCPW);
+
   };
 
   return (
@@ -112,6 +115,7 @@ export default function SignUpForm() {
         >
           <input
             {...register('password')}
+
             type={showPassword ? 'text' : 'password'}
             placeholder='Password'
             className={styles.authInput}
