@@ -32,9 +32,9 @@ export default async function Page({ params }: Props) {
   const links = await fetchUserLinks(folderData.user_id, folderData.id);
 
   return (
-    <div>
+    <>
       <SharedProfile userInfo={userInfo} folderName={folderData.name} />
       <SharedLinkCardList items={links} />
-    </div>
+    </>
   );
 }
