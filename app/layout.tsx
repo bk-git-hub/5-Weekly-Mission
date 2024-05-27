@@ -1,4 +1,4 @@
-import { UserInfoProvider } from '@/contexts/UserInfoContext';
+import { AuthProvider } from '@/contexts/UserInfoContext';
 import '@/styles/reset.css';
 import '@/styles/globals.css';
 
@@ -13,7 +13,7 @@ export default function RootLayout({
         <title>Linkbrary</title>
       </head>
       <body>
-        <UserInfoProvider>{children}</UserInfoProvider>
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   );

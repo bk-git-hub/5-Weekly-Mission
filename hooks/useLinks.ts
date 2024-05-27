@@ -1,4 +1,4 @@
-import { useUserInfo } from '@/contexts/UserInfoContext';
+import { useAuth } from '@/contexts/UserInfoContext';
 import { axiosInstance } from '@/utils/axiosInstance';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
@@ -6,7 +6,7 @@ import { LinkObj } from '@/utils/interfaces';
 
 const useLinks = () => {
   const router = useRouter();
-  const { userInfo } = useUserInfo();
+  const { userInfo } = useAuth();
   const [links, setLinks] = useState<LinkObj[]>([]);
 
   const folderId = router.query.slug ? router.query.slug[0] : -1;
@@ -23,7 +23,7 @@ const useLinks = () => {
 
   useEffect(() => {
     getLinkList();
-  }, [folderId]);
+  }, [folderId, userInfo]);
 
   return { links };
 };

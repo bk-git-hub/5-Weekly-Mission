@@ -2,13 +2,12 @@
 
 import Button from '@/components/Button/Button';
 import styles from '@/styles/AuthForm.module.scss';
-import { useForm, SubmitHandler } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import ShowTextToggle from '@/components/ShowTextToggle/ShowTextToggle';
-import { axiosInstance } from '@/utils/axiosInstance';
-import { useRouter } from 'next/navigation';
 import { SignInFormSchema, SignInFormFields } from '@/app/lib/definitions';
+import { useAuth } from '@/contexts/UserInfoContext';
 
 const schema = SignInFormSchema;
 
@@ -24,21 +23,15 @@ export default function SignInForm() {
   });
 
   const [showPassword, setShowPassword] = useState(false);
-  const router = useRouter();
+  const { submitSignIn } = useAuth();
 
   const handleToggleClick = () => {
-    setShowPassword(!showPassword);
+    setShowPassword((prev) => !prev);
   };
 
-  const onSubmit: SubmitHandler<SignInFormFields> = async (data) => {
+  const onSubmit = async (data: any) => {
     try {
-      const response = await axiosInstance.post('/sign-in', data);
-      if (response.status >= 200 && response.status < 300) {
-        const accessToken = response.data.data.accessToken;
-        localStorage.setItem('accessToken', accessToken);
-        router.push('/folder');
-      } else {
-      }
+      await submitSignIn(data);
     } catch (error) {
       setError('email', { message: '이메일을 확인해주세요' });
       setError('password', { message: '비밀번호를 확인해주세요' });

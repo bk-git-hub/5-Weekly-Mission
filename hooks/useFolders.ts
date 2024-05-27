@@ -1,11 +1,11 @@
-import { useUserInfo } from '@/contexts/UserInfoContext';
+import { useAuth } from '@/contexts/UserInfoContext';
 import { axiosInstance } from '@/utils/axiosInstance';
 import { FolderObj } from '@/utils/interfaces';
 import { useEffect, useState } from 'react';
 
 const useFolders = () => {
   const [folders, setFolders] = useState<FolderObj[]>();
-  const { userInfo } = useUserInfo();
+  const { userInfo } = useAuth();
 
   const allFolder = {
     id: -1,

@@ -5,11 +5,11 @@ import Image from 'next/image';
 import styles from './Header.module.css';
 import Link from 'next/link';
 import Account from '@/components/Account/Account';
-import { useUserInfo } from '@/contexts/UserInfoContext';
+import { useAuth } from '@/contexts/UserInfoContext';
 import { axiosInstance } from '@/utils/axiosInstance';
 import { useEffect } from 'react';
 export default function Header() {
-  const { userInfo, setUserInfo } = useUserInfo();
+  const { userInfo, setUserInfo, signOut } = useAuth();
   const loadUser = async () => {
     const accessToken = localStorage.getItem('accessToken');
     if (accessToken) {
@@ -33,10 +33,13 @@ export default function Header() {
         </Link>
 
         {userInfo ? (
-          <Account
-            profileImgSource={userInfo.image_source}
-            userEmail={userInfo.email}
-          />
+          <>
+            <Account
+              profileImgSource={userInfo.image_source}
+              userEmail={userInfo.email}
+            />
+            <Button onClick={signOut}>로그아웃</Button>
+          </>
         ) : (
           <Link href={'/signin'}>
             <Button className={styles.signInButton}>로그인</Button>
