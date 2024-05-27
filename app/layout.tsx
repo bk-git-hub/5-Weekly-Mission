@@ -1,4 +1,4 @@
-import { AuthProvider } from '@/contexts/UserInfoContext';
+import { AuthProvider } from '@/contexts/AuthContext';
 import '@/styles/reset.css';
 import '@/styles/globals.css';
 

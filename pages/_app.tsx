@@ -1,7 +1,7 @@
 import '@/styles/reset.css';
 import '@/styles/globals.css';
 import type { AppProps } from 'next/app';
-import { AuthProvider } from '@/contexts/UserInfoContext';
+import { AuthProvider } from '@/contexts/AuthContext';
 import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 

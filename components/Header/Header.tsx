@@ -5,23 +5,14 @@ import Image from 'next/image';
 import styles from './Header.module.css';
 import Link from 'next/link';
 import Account from '@/components/Account/Account';
-import { useAuth } from '@/contexts/UserInfoContext';
-import { axiosInstance } from '@/utils/axiosInstance';
+import { useAuth } from '@/contexts/AuthContext';
 import { useEffect } from 'react';
 import { useUserInfo } from '@/hooks/useUserInfo';
 export default function Header() {
-  const { signOut } = useAuth();
-  const { user, setUserInfo } = useUserInfo();
+  const { getUserInfo, signOut } = useAuth();
+  const { user } = useUserInfo();
   const loadUser = async () => {
-    const accessToken = localStorage.getItem('accessToken');
-    if (accessToken) {
-      const response = await axiosInstance.get('/users', {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-      setUserInfo(response.data.data[0]);
-    }
+    await getUserInfo();
   };
 
   useEffect(() => {

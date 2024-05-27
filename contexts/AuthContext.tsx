@@ -5,6 +5,7 @@ import { SubmitHandler } from 'react-hook-form';
 import { SignInFormFields } from '@/app/lib/definitions';
 import { axiosInstance } from '@/utils/axiosInstance';
 import { useRouter } from 'next/navigation';
+import { useUserInfo } from '@/hooks/useUserInfo';
 
 interface Props {
   children: React.ReactNode;
@@ -13,7 +14,7 @@ interface Props {
 const AuthContext = createContext<any>(undefined);
 
 export const AuthProvider = ({ children }: Props) => {
-  const [userInfo, setUserInfo] = useState(null);
+  const { setUserInfo } = useUserInfo();
 
   const router = useRouter();
 
@@ -30,6 +31,18 @@ export const AuthProvider = ({ children }: Props) => {
     }
   };
 
+  const getUserInfo = async () => {
+    const accessToken = localStorage.getItem('accessToken');
+    if (accessToken) {
+      const response = await axiosInstance.get('/users', {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      setUserInfo(response.data.data[0]);
+    }
+  };
+
   const signOut = () => {
     localStorage.removeItem('accessToken');
     router.push('/signin');
@@ -37,7 +50,7 @@ export const AuthProvider = ({ children }: Props) => {
 
   return (
     <AuthContext.Provider
-      value={{ userInfo, setUserInfo, submitSignIn, signOut }}
+      value={{ setUserInfo, submitSignIn, signOut, getUserInfo }}
     >
       {children}
     </AuthContext.Provider>

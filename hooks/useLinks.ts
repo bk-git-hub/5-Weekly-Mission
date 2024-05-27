@@ -1,4 +1,4 @@
-import { useAuth } from '@/contexts/UserInfoContext';
+import { useAuth } from '@/contexts/AuthContext';
 import { axiosInstance } from '@/utils/axiosInstance';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';

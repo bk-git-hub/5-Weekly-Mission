@@ -7,7 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import ShowTextToggle from '@/components/ShowTextToggle/ShowTextToggle';
 import { SignInFormSchema, SignInFormFields } from '@/app/lib/definitions';
-import { useAuth } from '@/contexts/UserInfoContext';
+import { useAuth } from '@/contexts/AuthContext';
 
 const schema = SignInFormSchema;
 
