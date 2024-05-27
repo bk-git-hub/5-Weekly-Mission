@@ -1,11 +1,11 @@
-import { useAuth } from '@/contexts/UserInfoContext';
 import { axiosInstance } from '@/utils/axiosInstance';
 import { FolderObj } from '@/utils/interfaces';
 import { useEffect, useState } from 'react';
+import { useUserInfo } from './useUserInfo';
 
 const useFolders = () => {
   const [folders, setFolders] = useState<FolderObj[]>();
-  const { userInfo } = useAuth();
+  const { user } = useUserInfo();
 
   const allFolder = {
     id: -1,
@@ -14,15 +14,15 @@ const useFolders = () => {
   };
 
   const getFolderList = async () => {
-    if (!userInfo) return;
-    const res = await axiosInstance.get(`/users/${userInfo.id}/folders`);
+    if (!user) return;
+    const res = await axiosInstance.get(`/users/${user.id}/folders`);
     const folderList = res.data.data;
     setFolders([allFolder, ...folderList]);
   };
 
   useEffect(() => {
     getFolderList();
-  }, [userInfo]);
+  }, [user]);
 
   return { folders };
 };

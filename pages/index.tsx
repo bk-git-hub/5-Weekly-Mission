@@ -4,15 +4,15 @@ import styles from '@/styles/Home.module.css';
 import Button from '@/components/Button/Button';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useAuth } from '@/contexts/UserInfoContext';
+import { useUserInfo } from '@/hooks/useUserInfo';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
   const router = useRouter(); // Access the router object
-  const { userInfo } = useAuth();
+  const { user } = useUserInfo();
   const handleAddLinkClick = () => {
-    userInfo ? router.push('/folder') : router.push('/signup'); // Navigate to /signup route when button is clicked
+    user ? router.push('/folder') : router.push('/signup'); // Navigate to /signup route when button is clicked
   };
 
   return (

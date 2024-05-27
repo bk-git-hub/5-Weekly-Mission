@@ -8,8 +8,10 @@ import Account from '@/components/Account/Account';
 import { useAuth } from '@/contexts/UserInfoContext';
 import { axiosInstance } from '@/utils/axiosInstance';
 import { useEffect } from 'react';
+import { useUserInfo } from '@/hooks/useUserInfo';
 export default function Header() {
-  const { userInfo, setUserInfo, signOut } = useAuth();
+  const { signOut } = useAuth();
+  const { user, setUserInfo } = useUserInfo();
   const loadUser = async () => {
     const accessToken = localStorage.getItem('accessToken');
     if (accessToken) {
@@ -32,11 +34,11 @@ export default function Header() {
           <Image src='/assets/images/logo.svg' alt='Logo' fill />
         </Link>
 
-        {userInfo ? (
+        {user ? (
           <>
             <Account
-              profileImgSource={userInfo.image_source}
-              userEmail={userInfo.email}
+              profileImgSource={user.image_source}
+              userEmail={user.email}
             />
             <Button onClick={signOut}>로그아웃</Button>
           </>
