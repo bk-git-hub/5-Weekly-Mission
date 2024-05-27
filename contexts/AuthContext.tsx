@@ -14,9 +14,19 @@ interface Props {
 const AuthContext = createContext<any>(undefined);
 
 export const AuthProvider = ({ children }: Props) => {
-  const { setUserInfo } = useUserInfo();
+  const { user, setUserInfo } = useUserInfo();
 
   const router = useRouter();
+
+  const checkEmailDuplication = async (email: string) => {
+    const response = await axiosInstance.post('/check-email', {
+      email: email,
+    });
+
+    if (response.status >= 400) {
+      throw new Error('이메일 중복');
+    }
+  };
 
   const submitSignIn: SubmitHandler<SignInFormFields> = async (data) => {
     try {
@@ -28,6 +38,18 @@ export const AuthProvider = ({ children }: Props) => {
       }
     } catch (error) {
       throw new Error('로그인 실패');
+    }
+  };
+
+  const submitSignUp = async (email: string, password: string) => {
+    const response = await axiosInstance.post('/sign-up', {
+      email,
+      password,
+    });
+    if (response.status < 400) {
+      const accessToken = response.data.data.accessToken;
+      localStorage.setItem('accessToken', accessToken);
+      router.push('/folder');
     }
   };
 
@@ -50,7 +72,14 @@ export const AuthProvider = ({ children }: Props) => {
 
   return (
     <AuthContext.Provider
-      value={{ setUserInfo, submitSignIn, signOut, getUserInfo }}
+      value={{
+        setUserInfo,
+        submitSignIn,
+        signOut,
+        getUserInfo,
+        checkEmailDuplication,
+        submitSignUp,
+      }}
     >
       {children}
     </AuthContext.Provider>
