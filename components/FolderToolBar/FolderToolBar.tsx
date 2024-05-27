@@ -3,7 +3,6 @@ import styles from './FolderToolBar.module.scss';
 import UtilButton from './UtilButton';
 import { UTIL_BUTTONS_PROPS } from './constants';
 import useFolders from '../../hooks/useFolders';
-import { useCurrentFolder } from '@/pages/folder/containers/useCurrentFolder';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Modal from '@/components/Modal/Modal';
