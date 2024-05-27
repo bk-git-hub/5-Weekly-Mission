@@ -6,18 +6,20 @@ import styles from '@/styles/AuthPage.module.css';
 import AuthHeader from '@/components/AuthHeader/AuthHeader';
 import SignUpForm from '@/components/SignUpForm/SignUpForm';
 import SocialAuth from '@/components/SocialAuth/SocialAuth';
+import { useUserInfo } from '@/hooks/useUserInfo';
 
 export default function SignUp() {
   const router = useRouter();
+  const { user } = useUserInfo();
 
-  if (localStorage.getItem('accessToken')) {
+  if (user) {
     router.push('/folder');
     return null;
   }
 
   return (
     <>
-      <main className={styles.authPage}>
+      <div className={styles.authPage}>
         <div className={styles.authPageContainer}>
           <AuthHeader>
             <AuthHeader.Description>이미 회원이신가요??</AuthHeader.Description>
@@ -26,7 +28,7 @@ export default function SignUp() {
           <SignUpForm />
           <SocialAuth text='다른 방식으로 가입하기' />
         </div>
-      </main>
+      </div>
     </>
   );
 }
