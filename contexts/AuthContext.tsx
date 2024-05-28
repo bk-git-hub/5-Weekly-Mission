@@ -67,6 +67,7 @@ export const AuthProvider = ({ children }: Props) => {
 
   const signOut = () => {
     localStorage.removeItem('accessToken');
+    setUserInfo(null);
     router.push('/signin');
   };
 

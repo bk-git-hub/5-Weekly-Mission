@@ -8,10 +8,10 @@ interface User {
 
 interface UserState {
   user: User | null;
-  setUserInfo: (user: User) => void;
+  setUserInfo: (user: User | null) => void;
 }
 
 export const useUserInfo = create<UserState>((set) => ({
   user: null,
-  setUserInfo: (user: User) => set({ user: user }),
+  setUserInfo: (user: User | null) => set({ user: user }),
 }));
